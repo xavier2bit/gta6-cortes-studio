@@ -1,0 +1,372 @@
+{
+  "benchmark": "57-Minute VOD Processing",
+  "vod_duration_sec": 3419.0,
+  "processing_time_sec": 24.19,
+  "speedup_vs_realtime": 141.3,
+  "audio_scan_time_sec": 6.63,
+  "transcription_time_sec": 17.56,
+  "total_audio_spikes": 387,
+  "total_silence_pauses": 1572,
+  "candidates": [
+    {
+      "id": "highlight_1_210s",
+      "rank": 1,
+      "start": 210.0,
+      "end": 225.0,
+      "duration": 15.0,
+      "peak_time": 218,
+      "score": 60.4,
+      "confidence": "MODERADA",
+      "suggested_hook": "MOMENTO VIRAL: REAÇÃO AO VIVO",
+      "reasons": [
+        "Explosão de áudio (2.3x acima da média)",
+        "Explosão de áudio (3.4x acima da média)",
+        "Grito/Reação alta (3.2x acima da média)",
+        "Grito/Reação alta (2.7x acima da média)"
+      ],
+      "evidence_breakdown": [
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.3x acima da média)",
+          "score": 34.2
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (3.4x acima da média)",
+          "score": 43.7
+        },
+        {
+          "modality": "audio",
+          "text": "Grito/Reação alta (3.2x acima da média)",
+          "score": 42.6
+        },
+        {
+          "modality": "audio",
+          "text": "Grito/Reação alta (2.7x acima da média)",
+          "score": 37.6
+        },
+        {
+          "modality": "audio",
+          "text": "Grito/Reação alta (2.4x acima da média)",
+          "score": 35.2
+        },
+        {
+          "modality": "audio",
+          "text": "Grito/Reação alta (2.5x acima da média)",
+          "score": 35.8
+        }
+      ],
+      "modalities_count": 1
+    },
+    {
+      "id": "highlight_2_2604s",
+      "rank": 2,
+      "start": 2604.0,
+      "end": 2620.0,
+      "duration": 16.0,
+      "peak_time": 2610,
+      "score": 45.0,
+      "confidence": "MODERADA",
+      "suggested_hook": "MOMENTO VIRAL: REAÇÃO AO VIVO",
+      "reasons": [
+        "Explosão de áudio (3.3x acima da média)",
+        "Explosão de áudio (2.9x acima da média)",
+        "Grito/Reação alta (2.5x acima da média)",
+        "Explosão de áudio (2.7x acima da média)"
+      ],
+      "evidence_breakdown": [
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (3.3x acima da média)",
+          "score": 43.2
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.9x acima da média)",
+          "score": 39.8
+        },
+        {
+          "modality": "audio",
+          "text": "Grito/Reação alta (2.5x acima da média)",
+          "score": 36.3
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.7x acima da média)",
+          "score": 38.1
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.4x acima da média)",
+          "score": 34.8
+        }
+      ],
+      "modalities_count": 1
+    },
+    {
+      "id": "highlight_3_652s",
+      "rank": 3,
+      "start": 652.0,
+      "end": 670.0,
+      "duration": 18.0,
+      "peak_time": 660,
+      "score": 45.0,
+      "confidence": "MODERADA",
+      "suggested_hook": "MOMENTO VIRAL: REAÇÃO AO VIVO",
+      "reasons": [
+        "Grito/Reação alta (2.3x acima da média)",
+        "Explosão de áudio (2.6x acima da média)",
+        "Grito/Reação alta (3.0x acima da média)",
+        "Explosão de áudio (3.5x acima da média)"
+      ],
+      "evidence_breakdown": [
+        {
+          "modality": "audio",
+          "text": "Grito/Reação alta (2.3x acima da média)",
+          "score": 34.2
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.6x acima da média)",
+          "score": 37.0
+        },
+        {
+          "modality": "audio",
+          "text": "Grito/Reação alta (3.0x acima da média)",
+          "score": 41.0
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (3.5x acima da média)",
+          "score": 34.5
+        },
+        {
+          "modality": "audio",
+          "text": "Grito/Reação alta (3.2x acima da média)",
+          "score": 42.5
+        }
+      ],
+      "modalities_count": 1
+    },
+    {
+      "id": "highlight_4_3085s",
+      "rank": 4,
+      "start": 3085.0,
+      "end": 3106.0,
+      "duration": 21.0,
+      "peak_time": 3094,
+      "score": 45.0,
+      "confidence": "MODERADA",
+      "suggested_hook": "MOMENTO VIRAL: REAÇÃO AO VIVO",
+      "reasons": [
+        "Explosão de áudio (2.5x acima da média)",
+        "Explosão de áudio (2.3x acima da média)",
+        "Explosão de áudio (3.0x acima da média)",
+        "Grito/Reação alta (2.9x acima da média)"
+      ],
+      "evidence_breakdown": [
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.5x acima da média)",
+          "score": 35.6
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.3x acima da média)",
+          "score": 34.0
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (3.0x acima da média)",
+          "score": 40.7
+        },
+        {
+          "modality": "audio",
+          "text": "Grito/Reação alta (2.9x acima da média)",
+          "score": 39.6
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.2x acima da média)",
+          "score": 33.6
+        }
+      ],
+      "modalities_count": 1
+    },
+    {
+      "id": "highlight_5_2531s",
+      "rank": 5,
+      "start": 2531.0,
+      "end": 2545.65,
+      "duration": 14.65,
+      "peak_time": 2537,
+      "score": 45.0,
+      "confidence": "MODERADA",
+      "suggested_hook": "MOMENTO VIRAL: REAÇÃO AO VIVO",
+      "reasons": [
+        "Explosão de áudio (2.5x acima da média)",
+        "Explosão de áudio (3.4x acima da média)",
+        "Grito/Reação alta (2.4x acima da média)",
+        "Explosão de áudio (2.2x acima da média)"
+      ],
+      "evidence_breakdown": [
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.5x acima da média)",
+          "score": 25.7
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (3.4x acima da média)",
+          "score": 44.1
+        },
+        {
+          "modality": "audio",
+          "text": "Grito/Reação alta (2.4x acima da média)",
+          "score": 35.5
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.2x acima da média)",
+          "score": 33.5
+        }
+      ],
+      "modalities_count": 1
+    },
+    {
+      "id": "highlight_6_1596s",
+      "rank": 6,
+      "start": 1596.38,
+      "end": 1613.0,
+      "duration": 16.62,
+      "peak_time": 1604,
+      "score": 45.0,
+      "confidence": "MODERADA",
+      "suggested_hook": "'BOM, TÁ SÓ!'",
+      "reasons": [
+        "Explosão de áudio (2.8x acima da média)",
+        "Explosão de áudio (2.7x acima da média)",
+        "Explosão de áudio (2.4x acima da média)",
+        "Grito/Reação alta (2.3x acima da média)"
+      ],
+      "evidence_breakdown": [
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.8x acima da média)",
+          "score": 38.8
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.7x acima da média)",
+          "score": 37.5
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.4x acima da média)",
+          "score": 24.5
+        },
+        {
+          "modality": "audio",
+          "text": "Grito/Reação alta (2.3x acima da média)",
+          "score": 34.6
+        },
+        {
+          "modality": "audio",
+          "text": "Grito/Reação alta (2.5x acima da média)",
+          "score": 36.0
+        }
+      ],
+      "modalities_count": 1
+    },
+    {
+      "id": "highlight_7_3258s",
+      "rank": 7,
+      "start": 3258.0,
+      "end": 3271.0,
+      "duration": 13.0,
+      "peak_time": 3264,
+      "score": 45.0,
+      "confidence": "MODERADA",
+      "suggested_hook": "MOMENTO VIRAL: REAÇÃO AO VIVO",
+      "reasons": [
+        "Explosão de áudio (3.1x acima da média)",
+        "Explosão de áudio (3.6x acima da média)",
+        "Explosão de áudio (3.4x acima da média)",
+        "Explosão de áudio (3.0x acima da média)"
+      ],
+      "evidence_breakdown": [
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (3.1x acima da média)",
+          "score": 41.2
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (3.6x acima da média)",
+          "score": 45.0
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (3.4x acima da média)",
+          "score": 44.3
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (3.0x acima da média)",
+          "score": 40.7
+        }
+      ],
+      "modalities_count": 1
+    },
+    {
+      "id": "highlight_8_1645s",
+      "rank": 8,
+      "start": 1645.29,
+      "end": 1662.0,
+      "duration": 16.71,
+      "peak_time": 1653,
+      "score": 45.0,
+      "confidence": "MÉDIA",
+      "suggested_hook": "'THERE WE GO.'",
+      "reasons": [
+        "Fala impactante: \"Dude, you're getting that crazy look in ...\"",
+        "Explosão de áudio (2.5x acima da média)",
+        "Explosão de áudio (2.9x acima da média)",
+        "Explosão de áudio (2.4x acima da média)"
+      ],
+      "evidence_breakdown": [
+        {
+          "modality": "transcript",
+          "text": "Fala impactante: \"Dude, you're getting that crazy look in ...\"",
+          "score": 5.2
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.5x acima da média)",
+          "score": 35.7
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.9x acima da média)",
+          "score": 39.9
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.4x acima da média)",
+          "score": 24.3
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.6x acima da média)",
+          "score": 36.6
+        },
+        {
+          "modality": "audio",
+          "text": "Explosão de áudio (2.2x acima da média)",
+          "score": 33.8
+        }
+      ],
+      "modalities_count": 2
+    }
+  ]
+}

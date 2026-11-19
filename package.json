@@ -1,24 +1,30 @@
 {
   "name": "gta6-cortes-studio",
-  "version": "1.0.0",
-  "description": "Estúdio automatizado para corte e geração de vídeos virais de GTA 6 em 3 modelos (Meio a Meio, Página + Jogo, Só Cortes)",
-  "main": "cli.js",
+  "version": "2.0.0",
+  "description": "GG NO CHAT — GTA 6 Cortes Studio V2: Multimodal Highlight Detection Engine & Automated Viral Vertical Video Editor",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "studio": "node server.js",
-    "clip": "node cli.js",
-    "test-models": "node test_render_all.js"
+    "radar": "python engine/highlight_detector.py",
+    "test-engine": "python -m unittest discover -s engine/tests",
+    "qa": "node lib/qa_checker.js",
+    "clip": "node cli.js"
   },
   "keywords": [
     "gta6",
+    "ggnochat",
     "shorts",
     "reels",
     "tiktok",
-    "clipper",
-    "hyperframes",
-    "opusclip"
+    "highlight-detection",
+    "multimodal-ai",
+    "faster-whisper",
+    "scenedetect",
+    "ffmpeg",
+    "streamclipper"
   ],
-  "author": "GTA 6 Cortes",
+  "author": "GG NO CHAT (@ggnochat)",
   "license": "MIT",
   "dependencies": {
     "express": "^4.21.2",

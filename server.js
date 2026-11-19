@@ -194,6 +194,77 @@ app.get('/api/clips', (req, res) => {
   }
 });
 
+// 6. API: Radar de Highlights - Get Current Highlights & Heatmap
+app.get('/api/radar/highlights', (req, res) => {
+  try {
+    const radarPath = path.join(config.paths.output, 'radar_highlights.json');
+    const benchPath = path.join(config.paths.output, 'benchmark_57min_report.json');
+
+    if (fs.existsSync(radarPath)) {
+      const data = JSON.parse(fs.readFileSync(radarPath, 'utf8'));
+      return res.json({ success: true, data });
+    } else if (fs.existsSync(benchPath)) {
+      const data = JSON.parse(fs.readFileSync(benchPath, 'utf8'));
+      return res.json({ success: true, data });
+    }
+    res.json({ success: false, message: 'Nenhuma varredura do Radar realizada ainda.' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// 7. API: Radar de Highlights - Trigger Scan
+app.post('/api/radar/scan', async (req, res) => {
+  try {
+    const { videoPath, chatUrl, maxDuration = 3600 } = req.body;
+    const inputPath = videoPath || path.resolve('hd_clip.mp4');
+    const outputPath = path.join(config.paths.output, 'radar_highlights.json');
+    const pythonBin = "C:\\Users\\Admin\\AppData\\Local\\Programs\\Python\\Python311\\python.exe";
+
+    console.log(`[Radar] Iniciando varredura multimodal em: ${inputPath}`);
+
+    const args = [
+      path.join(__dirname, 'engine', 'highlight_detector.py'),
+      '--input', inputPath,
+      '--output', outputPath,
+      '--ffmpeg', config.bin.ffmpeg,
+      '--ffprobe', config.bin.ffprobe
+    ];
+
+    if (chatUrl) {
+      args.push('--chat', chatUrl);
+    }
+    if (maxDuration) {
+      args.push('--max-duration', String(maxDuration));
+    }
+
+    const { spawn } = require('child_process');
+    const proc = spawn(pythonBin, args);
+
+    let stdout = '';
+    let stderr = '';
+    proc.stdout.on('data', d => { stdout += d.toString(); });
+    proc.stderr.on('data', d => { stderr += d.toString(); });
+
+    proc.on('close', code => {
+      if (code === 0 && fs.existsSync(outputPath)) {
+        try {
+          const results = JSON.parse(fs.readFileSync(outputPath, 'utf8'));
+          return res.json({ success: true, data: results });
+        } catch (e) {
+          return res.status(500).json({ error: 'Erro ao analisar JSON de saída do Radar' });
+        }
+      } else {
+        console.error('[Radar Error]', stderr);
+        return res.status(500).json({ error: `Radar falhou com código ${code}: ${stderr}` });
+      }
+    });
+  } catch (err) {
+    console.error('[Radar] Erro ao disparar varredura:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`
 🌴 GG NO CHAT — GTA 6 CORTES STUDIO V2 INICIADO!

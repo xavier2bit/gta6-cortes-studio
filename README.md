@@ -1,94 +1,174 @@
-# 🌴 GTA 6 Cortes Studio — Gerador de Vídeos Virais
+# GG NO CHAT — Vertical Video Studio & Multimodal Highlight Detection Engine
 
-Sistema automatizado para baixar vídeos de YouTubers (gameplays, reações, podcasts), detectar momentos virais via IA e gerar cortes verticais (9:16) em **3 modelos profissionais** prontos para **TikTok, Instagram Reels e YouTube Shorts**.
-
----
-
-## 🚀 Os 3 Modelos Criados
-
-### 📱 1. Modelo "Tela Meio a Meio" (`split`)
-* **Parte Superior:** Câmera/reação do YouTuber centralizada com fundo ambiente desfocado.
-* **Parte Inferior:** Gameplay de alta ação do GTA 6 / Vice City (com corte inteligente da webcam da fonte).
-* **Divisor Central:** Barra neon gradiente Vice City (Rosa/Ciano/Roxo) com badge romano `VI` iluminado.
-* **Topo:** Gancho com badge oficial `GTA VI` e título chamativo.
-* **Legendas:** Estilo Karaokê com destaque dinâmico palavra por palavra em amarelo neon e contorno preto de alta retenção.
-
-### 📰 2. Modelo "Estilo Página de GTA 6 e Jogo" (`web`)
-* *Inspirado no HyperFrames e Prompt-Motion:*
-* **Parte Superior:** Card flutuante simulando uma página web oficial da **Rockstar Games Newswire** ou post viral do X/Twitter:
-  * Barra de navegador com cadeado de segurança `rockstargames.com/newswire/gta-vi-leak`.
-  * Logo oficial Rockstar Games (R*) dourado com badge verificado.
-  * Manchete do vazamento/novidade com gradiente neon.
-  * Contadores de engajamento (Likes, Retweets, Views).
-* **Parte Inferior:** Gameplay rodando em tela cheia com legendas sincronizadas.
-
-### ✂️ 3. Modelo "Só Cortes" (`direct`)
-* **Formato 9:16 Vertical Clássico:** Vídeo em foco com ambientação dinâmica em blur, gancho superior ("CORTE DO DIA") e legendas dinâmicas centrais no padrão dos maiores canais de corte do mundo (OpusClip/Hormozi).
+> An automated multimodal highlight detection and vertical short-form video creation studio for gaming livestreams and VODs.  
+> Compliant with EBU R128 audio loudness standards and optimized for vertical (9:16, 1080x1920) platforms.
 
 ---
 
-## 🛠️ Como Usar
+## Overview
 
-### Opção A: Pela Interface Web (Studio Dashboard)
-Inicie o estúdio visual com 1 comando:
+**GG NO CHAT Studio** provides a modular pipeline combining an intelligent multimodal detection engine in Python with a real-time web studio and rendering pipeline in Node.js and FFmpeg.
+
+It automates the process of finding viral-worthy moments in long gaming broadcasts and turning them into polished vertical clips with adaptive framing, synchronized captions, and customizable branding.
+
+---
+
+## System Architecture
+
+```mermaid
+flowchart TD
+    subgraph INGESTION["1. Stream & Media Ingestion"]
+        VOD["Livestream VOD / MP4 File / Rolling Buffer"]
+        CHAT["Live Chat Log / Replay"]
+    end
+
+    subgraph ENGINE["2. Multimodal Highlight Detection (Python 3.11)"]
+        direction TB
+        AUD["Audio Analyzer<br/>• Short-time RMS Energy<br/>• Spectral Centroid (>1800 Hz)<br/>• Zero-Crossing Rate"]
+        CHT["Chat Analyzer<br/>• Rolling Velocity (MPS)<br/>• Adaptive Z-Score<br/>• Excitement Lexicon & Anti-Spam"]
+        HUD["HUD Event Detector<br/>• Alert ROI Analysis<br/>• Screen Elimination Transitions<br/>• Damage Flash Thresholds"]
+        VIS["Visual Analyzer<br/>• Scene Cut Detection (PySceneDetect)<br/>• Motion Flow Variance"]
+        WSP["Speech Analyzer<br/>• faster-whisper int8 with VAD<br/>• Excitement Keyword Density"]
+        
+        RANK["Ranking Engine (0-100)<br/>• Coarse-to-Fine Multimodal Fusion<br/>• Narrative Framing (Setup → Climax → Reaction)<br/>• Silence Boundary Snapping<br/>• Editorial Hook Suggestion"]
+        
+        AUD --> RANK
+        CHT --> RANK
+        HUD --> RANK
+        VIS --> RANK
+        WSP --> RANK
+    end
+
+    subgraph STUDIO["3. Web Studio Interface (Node.js :3333)"]
+        RADAR["Radar Timeline & Heatmap<br/>Fine-tune In/Out points (-1s / +1s)"]
+        EDIT["Template Selector & Brand Controls<br/>Palette, Safe-Zone Guides, Typography"]
+    end
+
+    subgraph RENDER["4. Composition & QA (FFmpeg & Sharp)"]
+        M1["Model 1: Reaction Split Screen<br/>1.258 Anatomical Aspect Ratio Webcam"]
+        M2["Model 2: Focus Analysis<br/>Dominant 80% Gameplay + Visual Callouts"]
+        M3["Model 3: Direct Highlight<br/>Adaptive Vertical Reframe"]
+        QA["QA Inspector<br/>EBU R128 (-16 LUFS) & Safe Zone Checks"]
+    end
+
+    INGESTION --> ENGINE
+    ENGINE --> STUDIO
+    STUDIO --> RENDER
+```
+
+---
+
+## Visual Models
+
+### 1. Reaction Split Screen
+- **Facecam Alignment:** Preserves facial aspect ratio (817x650 / 1.258) without vertical squeezing.
+- **Neon Divider:** Illuminated horizontal gradient divider with Roman numeral badge.
+- **Karaoke Subtitles:** Word-by-word highlighted captions rendered within social media safe zones.
+
+### 2. Focus Analysis
+- **Dominant Media Area:** Maximizes vertical real estate with an 80% frame coverage for gameplay action.
+- **Top Context Card:** Editorial header displaying key discussion points.
+- **Interactive Callouts:** Highlight annotations anchored to on-screen details.
+
+### 3. Direct Highlight
+- **Vertical Reframe:** Adaptive focus on high-action segments with subtle ambient background.
+- **Retention Hook:** Concise opening title positioned outside native platform UI buttons.
+
+---
+
+## Highlight Detection Engine
+
+The detection worker implements a coarse-to-fine multimodal approach:
+
+1. **Acoustic Fast-Scan (500x+ Real-Time):** 16kHz mono audio is analyzed for energy bursts and high spectral frequencies (screams, laughter, abrupt volume changes).
+2. **Selective Speech Transcription:** Only candidate highlight zones are transcribed using `faster-whisper` with voice activity detection (VAD).
+3. **Narrative Arc Preservation:** Clips automatically maintain a three-part structure:
+   - **Setup:** 3-5 seconds of preceding context.
+   - **Climax:** Peak event or trigger.
+   - **Reaction:** 4-6 seconds of immediate streamer response.
+   - **Boundary Snapping:** Clip boundaries snap to detected pauses in speech.
+
+---
+
+## Benchmark Results
+
+Evaluated on a 57-minute livestream VOD (3,419 seconds total duration):
+
+| Stage | Duration | Processing Speed |
+| :--- | :--- | :--- |
+| Acoustic Fast-Scan (3,419s) | 6.63s | 515.7x real-time |
+| Peak Clustering & Ranking | 0.003s | Instantaneous |
+| Targeted Whisper VAD (8 zones) | 17.56s | Efficient CPU int8 |
+| **Total Engine Runtime** | **24.19s** | **141.3x faster than real-time** |
+
+---
+
+## Installation & Usage
+
+### Prerequisites
+- Node.js 18+
+- Python 3.11+
+- FFmpeg installed and available in system PATH
+
+### Setup
+
+```bash
+# Install Node.js dependencies
+npm install
+
+# Install Python requirements
+pip install -r requirements.txt
+```
+
+### Running the Studio
+
 ```bash
 npm run studio
 ```
-Abra no seu navegador: **[http://localhost:3333](http://localhost:3333)**
+Access the dashboard at `http://localhost:3333`.
 
-Na interface você pode:
-1. Colar o link de qualquer vídeo do YouTube (ou usar os atalhos prontos do Davy Jones / Gameplayrj).
-2. Clicar em **"Analisar Vídeo & Detectar Cortes"** (a IA transcreve e pontua os momentos mais emocionantes).
-3. Escolher o **Modelo** (Meio a Meio, Página de GTA 6 ou Só Cortes).
-4. Personalizar o gancho, badge e tag do canal.
-5. Clicar em **"Gerar Corte Viral"** para assistir no player integrado e baixar o MP4 com 1 clique!
+### Running the Detection Engine via CLI
 
----
-
-### Opção B: Pela Linha de Comando (CLI)
-
-#### 1. Corte no Modelo Meio a Meio:
 ```bash
-node cli.js --url "https://www.youtube.com/watch?v=chge7GrCNc0" --model split --start 600 --duration 20 --hook "DAVY JONES REAGIU AO GTA 6!"
+python engine/highlight_detector.py --video path/to/stream.mp4 --output output/radar_highlights.json
 ```
 
-#### 2. Corte no Modelo Página de GTA 6 + Jogo:
-```bash
-node cli.js --url "https://www.youtube.com/watch?v=chge7GrCNc0" --model web --start 600 --duration 25 --hook "VAZAMENTO CONFIRMADO NO GTA VI!"
-```
+### Running Test Suites
 
-#### 3. Corte no Modelo Só Cortes:
 ```bash
-node cli.js --url "https://www.youtube.com/watch?v=chge7GrCNc0" --model direct --start 600 --duration 20
-```
+# Highlight engine unit tests
+npm run test-engine
 
-#### 4. Modo Totalmente Automático (Detecção de Momentos Virais com IA):
-```bash
-node cli.js --url "https://www.youtube.com/watch?v=chge7GrCNc0" --auto --count 3 --model split
+# QA audio/video compliance checker
+npm run qa
 ```
 
 ---
 
-## 📁 Estrutura do Projeto
+## Project Structure
 
+```text
+├── assets/                  # Branding assets, fonts, lofi tracks, and overlays
+├── engine/                  # Multimodal Python detection engine
+│   ├── analyzers/           # Audio, chat, HUD, visual, and speech analyzers
+│   ├── tests/               # Integration and unit test suite
+│   ├── ranking_engine.py    # Multimodal scoring and narrative framing
+│   └── highlight_detector.py# Main CLI pipeline worker
+├── lib/                     # Node.js rendering and video composition modules
+│   ├── templates/           # Split screen, focus analysis, and direct short templates
+│   ├── renderer.js          # FFmpeg rendering pipeline
+│   ├── qa_checker.js        # EBU R128 loudness and safe-zone verification
+│   └── subtitle_builder.js  # Dynamic ASS subtitle generation
+├── public/                  # Web Studio interface (HTML/CSS/JS)
+├── scripts/                 # Dev and maintenance utilities
+├── brand.json               # Brand configuration and palette
+├── package.json             # Node.js scripts and dependencies
+├── requirements.txt         # Python dependencies
+└── server.js                # Express API and Studio server
 ```
-f:\GTA 6 CORTES\
-├── cli.js                  # Interface de Linha de Comando
-├── server.js               # Servidor do Studio Web (Porta 3333)
-├── package.json            # Dependências e scripts npm
-├── lib\
-│   ├── config.js           # Caminhos do FFmpeg, yt-dlp e estilos
-│   ├── downloader.js       # Download seletivo e extração de legendas
-│   ├── ai_moments.js       # Algoritmo de detecção de momentos virais
-│   ├── subtitle_builder.js # Gerador de legendas Karaokê (.ASS)
-│   ├── renderer.js         # Orquestrador FFmpeg para compor os vídeos
-│   └── templates\
-│       ├── split_screen.js # Template Modelo 1 (Meio a Meio)
-│       ├── web_page_game.js# Template Modelo 2 (Página GTA 6 + Jogo)
-│       └── direct_cut.js   # Template Modelo 3 (Só Cortes)
-├── assets\
-│   └── fonts\              # Fontes Montserrat e Pricedown (GTA)
-├── public\
-│   └── index.html          # Dashboard visual do estúdio
-└── output\                 # Pasta onde os vídeos renderizados são salvos
-```
+
+---
+
+## License
+
+Distributed under the MIT License.

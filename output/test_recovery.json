@@ -1,0 +1,169 @@
+{
+  "studio": "GG NO CHAT — Radar de Highlights",
+  "processed_at": "2026-11-19T03:57:31Z",
+  "video_path": "hd_clip.mp4",
+  "duration_sec": 15.0,
+  "processing_time_sec": 0.04,
+  "candidates_count": 1,
+  "candidates": [
+    {
+      "id": "highlight_1_0s",
+      "rank": 1,
+      "start": 0.0,
+      "end": 12.78,
+      "duration": 12.78,
+      "peak_time": 9,
+      "score": 45.0,
+      "confidence": "MÉDIA",
+      "suggested_hook": "FUGA INSANA: A POLÍCIA NÃO DEU TRÉGUA!",
+      "reasons": [
+        "Dano crítico no jogador",
+        "Estrelas de Polícia ativas",
+        "Grito/Reação alta (2.2x acima da média)",
+        "Grito/Reação alta (2.4x acima da média)"
+      ],
+      "evidence_breakdown": [
+        {
+          "modality": "hud",
+          "text": "Dano crítico no jogador",
+          "score": 8.8
+        },
+        {
+          "modality": "hud",
+          "text": "Estrelas de Polícia ativas",
+          "score": 11.2
+        },
+        {
+          "modality": "audio",
+          "text": "Grito/Reação alta (2.2x acima da média)",
+          "score": 33.5
+        },
+        {
+          "modality": "audio",
+          "text": "Grito/Reação alta (2.4x acima da média)",
+          "score": 34.7
+        }
+      ],
+      "modalities_count": 2
+    }
+  ],
+  "heatmap": [
+    {
+      "second": 0,
+      "audio": 0.605,
+      "chat": 0.0,
+      "hud": 0.35,
+      "composite": 0.33
+    },
+    {
+      "second": 1,
+      "audio": 0.542,
+      "chat": 0.0,
+      "hud": 0.0,
+      "composite": 0.217
+    },
+    {
+      "second": 2,
+      "audio": 0.3,
+      "chat": 0.0,
+      "hud": 0.35,
+      "composite": 0.207
+    },
+    {
+      "second": 3,
+      "audio": 0.327,
+      "chat": 0.0,
+      "hud": 0.0,
+      "composite": 0.131
+    },
+    {
+      "second": 4,
+      "audio": 0.3,
+      "chat": 0.0,
+      "hud": 0.35,
+      "composite": 0.207
+    },
+    {
+      "second": 5,
+      "audio": 0.3,
+      "chat": 0.0,
+      "hud": 0.35,
+      "composite": 0.207
+    },
+    {
+      "second": 6,
+      "audio": 0.3,
+      "chat": 0.0,
+      "hud": 0.35,
+      "composite": 0.207
+    },
+    {
+      "second": 7,
+      "audio": 0.3,
+      "chat": 0.0,
+      "hud": 0.45,
+      "composite": 0.232
+    },
+    {
+      "second": 8,
+      "audio": 0.3,
+      "chat": 0.0,
+      "hud": 0.35,
+      "composite": 0.207
+    },
+    {
+      "second": 9,
+      "audio": 0.3,
+      "chat": 0.0,
+      "hud": 0.0,
+      "composite": 0.12
+    },
+    {
+      "second": 10,
+      "audio": 0.655,
+      "chat": 0.0,
+      "hud": 0.0,
+      "composite": 0.262
+    },
+    {
+      "second": 11,
+      "audio": 0.772,
+      "chat": 0.0,
+      "hud": 0.0,
+      "composite": 0.309
+    },
+    {
+      "second": 12,
+      "audio": 0.409,
+      "chat": 0.0,
+      "hud": 0.0,
+      "composite": 0.164
+    },
+    {
+      "second": 13,
+      "audio": 0.06,
+      "chat": 0.0,
+      "hud": 0.0,
+      "composite": 0.024
+    },
+    {
+      "second": 14,
+      "audio": 0.3,
+      "chat": 0.0,
+      "hud": 0.0,
+      "composite": 0.12
+    }
+  ],
+  "scenes_count": 0,
+  "chat_stats": {
+    "has_chat": false,
+    "total_messages": 0,
+    "spikes": 0
+  },
+  "audio_stats": {
+    "spikes": 2
+  },
+  "hud_stats": {
+    "events_detected": 7
+  }
+}

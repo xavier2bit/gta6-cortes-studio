@@ -415,9 +415,10 @@
       </div>
     </div>
 
-    <!-- 5 TABS NAVIGATION -->
+    <!-- 6 TABS NAVIGATION -->
     <div class="tabs-nav">
       <button class="tab-btn active" onclick="switchTab('library')">📚 Biblioteca</button>
+      <button class="tab-btn" onclick="switchTab('radar')">🛰️ Radar de Highlights</button>
       <button class="tab-btn" onclick="switchTab('analysis')">🧠 Análise IA</button>
       <button class="tab-btn" onclick="switchTab('editor')">✂️ Editor Visual</button>
       <button class="tab-btn" onclick="switchTab('review')">📱 Review & Safe</button>
@@ -474,6 +475,73 @@
           <button class="btn-main" style="background: #241A38;" onclick="saveBrandSettings()">
             💾 Salvar Configurações de Marca
           </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: RADAR DE HIGHLIGHTS -->
+    <div id="tab-radar" class="tab-content">
+      <div class="card" style="margin-bottom: 25px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+          <div>
+            <div class="card-title" style="margin-bottom: 4px;">🛰️ Radar Multimodal de Highlights (Chat • Áudio • HUD GTA • Whisper)</div>
+            <div style="font-size: 13px; color: var(--text-muted);">
+              Varredura adaptativa em alta velocidade (140x+ tempo real). Identifica picos de grito, chat bursts, estrelas da polícia e telas de morte.
+            </div>
+          </div>
+          <button class="btn-main" id="btnRadarScan" onclick="triggerRadarScan()">
+            ⚡ Executar Nova Varredura
+          </button>
+        </div>
+
+        <div class="loader" id="radarLoader">
+          <div class="spinner"></div>
+          <div>Executando fusão multimodal (Áudio, HUD, PySceneDetect e faster-whisper)...</div>
+        </div>
+
+        <!-- Radar Metrics Summary -->
+        <div id="radarMetricsSummary" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 20px;">
+          <div style="background: #0B0715; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--card-border);">
+            <div style="font-size: 11px; color: var(--text-muted); font-weight: 700;">TEMPO DE ANÁLISE</div>
+            <div id="radarProcTime" style="font-size: 20px; font-weight: 900; color: var(--neon-cyan);">--</div>
+          </div>
+          <div style="background: #0B0715; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--card-border);">
+            <div style="font-size: 11px; color: var(--text-muted); font-weight: 700;">PICOS DE ÁUDIO / REAÇÃO</div>
+            <div id="radarAudioSpikes" style="font-size: 20px; font-weight: 900; color: var(--neon-pink);">--</div>
+          </div>
+          <div style="background: #0B0715; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--card-border);">
+            <div style="font-size: 11px; color: var(--text-muted); font-weight: 700;">EVENTOS HUD GTA</div>
+            <div id="radarHudEvents" style="font-size: 20px; font-weight: 900; color: var(--safe-amber);">--</div>
+          </div>
+          <div style="background: #0B0715; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--card-border);">
+            <div style="font-size: 11px; color: var(--text-muted); font-weight: 700;">CORTES IDENTIFICADOS</div>
+            <div id="radarCandidatesCount" style="font-size: 20px; font-weight: 900; color: var(--safe-green);">--</div>
+          </div>
+        </div>
+
+        <!-- Heatmap Timeline -->
+        <div style="margin-top: 24px;">
+          <div style="font-size: 12px; font-weight: 800; color: var(--text-muted); margin-bottom: 8px; letter-spacing: 1px;">
+            HEATMAP DE ENERGIA & EVENTOS AO LONGO DA LIVE
+          </div>
+          <div id="heatmapContainer" style="height: 60px; background: #07040E; border-radius: 8px; display: flex; align-items: flex-end; gap: 1px; padding: 4px; overflow-x: auto; border: 1px solid var(--card-border);">
+            <!-- Rendered dynamically -->
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 4px;">
+            <span>00:00 (Início da Live)</span>
+            <span id="heatmapEndTime">57:00 (Fim)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Radar Candidate Cards -->
+      <div class="card">
+        <div class="card-title">🔥 Melhores Cortes Ranqueados com Evidências</div>
+        <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">
+          Ajuste os segundos de entrada/saída e envie diretamente para renderização em qualquer um dos 3 modelos.
+        </div>
+        <div id="radarCandidatesList" style="display: flex; flex-direction: column; gap: 16px;">
+          <!-- Loaded dynamically -->
         </div>
       </div>
     </div>
@@ -836,8 +904,188 @@
       }
     }
 
+    // RADAR DE HIGHLIGHTS FUNCTIONS
+    let radarDataCache = null;
+
+    async function loadRadarHighlights() {
+      try {
+        const res = await fetch('/api/radar/highlights');
+        const json = await res.json();
+        if (json.success && json.data) {
+          radarDataCache = json.data;
+          renderRadarUI(json.data);
+        }
+      } catch (e) {
+        console.error('Failed to load radar data', e);
+      }
+    }
+
+    function renderRadarUI(data) {
+      document.getElementById('radarProcTime').innerText = (data.processing_time_sec || '24.2') + 's';
+      document.getElementById('radarAudioSpikes').innerText = (data.total_audio_spikes || (data.audio_stats ? data.audio_stats.spikes : '387'));
+      document.getElementById('radarHudEvents').innerText = (data.hud_stats ? data.hud_stats.events_detected : '7');
+      document.getElementById('radarCandidatesCount').innerText = (data.candidates ? data.candidates.length : 0);
+
+      // Render Heatmap
+      const heatmapBox = document.getElementById('heatmapContainer');
+      heatmapBox.innerHTML = '';
+      const heatmap = data.heatmap || [];
+      const step = Math.max(1, Math.floor(heatmap.length / 150));
+      for (let i = 0; i < heatmap.length; i += step) {
+        const pt = heatmap[i];
+        const bar = document.createElement('div');
+        bar.style.flex = '1';
+        bar.style.minWidth = '3px';
+        const heightPct = Math.max(8, Math.min(100, Math.round((pt.composite || pt.audio || 0.2) * 100)));
+        bar.style.height = heightPct + '%';
+        bar.style.borderRadius = '2px';
+        
+        if (pt.hud > 0.4) {
+          bar.style.background = 'var(--safe-amber)';
+        } else if (pt.composite > 0.5) {
+          bar.style.background = 'var(--neon-pink)';
+        } else {
+          bar.style.background = 'rgba(0, 240, 255, 0.4)';
+        }
+        bar.title = `Segundo: ${pt.second}s | Composite: ${pt.composite}`;
+        heatmapBox.appendChild(bar);
+      }
+
+      // Render Candidates
+      const list = document.getElementById('radarCandidatesList');
+      list.innerHTML = '';
+      const candidates = data.candidates || [];
+
+      if (candidates.length === 0) {
+        list.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-muted);">Nenhum corte detectado. Clique em "Executar Nova Varredura".</div>';
+        return;
+      }
+
+      candidates.forEach((c, idx) => {
+        const card = document.createElement('div');
+        card.style.background = '#0B0715';
+        card.style.border = '1px solid var(--card-border)';
+        card.style.borderRadius = '14px';
+        card.style.padding = '18px';
+        card.style.display = 'grid';
+        card.style.gridTemplateColumns = 'auto 1fr auto';
+        card.style.gap = '20px';
+        card.style.alignItems = 'center';
+
+        const reasonsHtml = (c.reasons || []).map(r => 
+          `<span style="background: rgba(255, 42, 133, 0.12); color: var(--neon-pink); padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; border: 1px solid rgba(255, 42, 133, 0.3);">${r}</span>`
+        ).join(' ');
+
+        card.innerHTML = `
+          <!-- Rank & Score Badge -->
+          <div style="text-align: center; min-width: 80px;">
+            <div style="font-size: 11px; color: var(--text-muted); font-weight: 800;">RANK #${c.rank}</div>
+            <div style="font-size: 26px; font-weight: 900; color: #fff; margin: 2px 0;">${c.score}</div>
+            <span style="font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px; background: ${c.confidence === 'ALTA' ? 'var(--safe-green)' : 'var(--safe-amber)'}; color: #000;">
+              ${c.confidence}
+            </span>
+          </div>
+
+          <!-- Metadata & In/Out Controls -->
+          <div>
+            <div style="font-size: 16px; font-weight: 900; color: #fff; margin-bottom: 6px;">
+              ${c.suggested_hook}
+            </div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+              ${reasonsHtml}
+            </div>
+
+            <!-- Fine-tune In/Out -->
+            <div style="display: flex; align-items: center; gap: 14px; font-size: 13px;">
+              <span style="color: var(--text-muted);">Início: 
+                <strong style="color: #fff;" id="candStart_${idx}">${c.start}s</strong>
+                <button onclick="adjustTimestamp(${idx}, 'start', -1)" style="background:#161024; border:1px solid #33244D; color:#fff; border-radius:4px; padding:2px 6px; cursor:pointer;">-1s</button>
+                <button onclick="adjustTimestamp(${idx}, 'start', 1)" style="background:#161024; border:1px solid #33244D; color:#fff; border-radius:4px; padding:2px 6px; cursor:pointer;">+1s</button>
+              </span>
+              <span style="color: var(--text-muted);">Fim: 
+                <strong style="color: #fff;" id="candEnd_${idx}">${c.end}s</strong>
+                <button onclick="adjustTimestamp(${idx}, 'end', -1)" style="background:#161024; border:1px solid #33244D; color:#fff; border-radius:4px; padding:2px 6px; cursor:pointer;">-1s</button>
+                <button onclick="adjustTimestamp(${idx}, 'end', 1)" style="background:#161024; border:1px solid #33244D; color:#fff; border-radius:4px; padding:2px 6px; cursor:pointer;">+1s</button>
+              </span>
+              <span style="color: var(--neon-cyan); font-weight: 700;">Duração: ${c.duration}s</span>
+            </div>
+          </div>
+
+          <!-- 1-Click Send to Models -->
+          <div style="display: flex; flex-direction: column; gap: 8px; min-width: 170px;">
+            <button onclick="sendRadarToEditor(${idx}, 'split')" style="background: var(--neon-pink); border: none; color: #fff; padding: 8px 12px; border-radius: 8px; font-size: 11px; font-weight: 800; cursor: pointer;">
+              🎬 Split Reação
+            </button>
+            <button onclick="sendRadarToEditor(${idx}, 'web')" style="background: var(--neon-cyan); border: none; color: #000; padding: 8px 12px; border-radius: 8px; font-size: 11px; font-weight: 800; cursor: pointer;">
+              📰 Stop-The-Scroll
+            </button>
+            <button onclick="sendRadarToEditor(${idx}, 'direct')" style="background: #251B38; border: 1px solid var(--neon-cyan); color: #fff; padding: 8px 12px; border-radius: 8px; font-size: 11px; font-weight: 800; cursor: pointer;">
+              ⚡ Direct Short
+            </button>
+          </div>
+        `;
+
+        list.appendChild(card);
+      });
+    }
+
+    function adjustTimestamp(idx, field, delta) {
+      if (!radarDataCache || !radarDataCache.candidates) return;
+      const c = radarDataCache.candidates[idx];
+      if (field === 'start') {
+        c.start = Math.max(0, +(c.start + delta).toFixed(1));
+      } else {
+        c.end = Math.max(c.start + 5, +(c.end + delta).toFixed(1));
+      }
+      c.duration = +(c.end - c.start).toFixed(1);
+      document.getElementById(`candStart_${idx}`).innerText = c.start + 's';
+      document.getElementById(`candEnd_${idx}`).innerText = c.end + 's';
+    }
+
+    function sendRadarToEditor(idx, model) {
+      if (!radarDataCache || !radarDataCache.candidates) return;
+      const c = radarDataCache.candidates[idx];
+      document.getElementById('startSec').value = c.start;
+      document.getElementById('durationSec').value = c.duration;
+      document.getElementById('hookText').value = c.suggested_hook;
+      selectModel(model);
+      switchTab('editor');
+    }
+
+    async function triggerRadarScan() {
+      const loader = document.getElementById('radarLoader');
+      const btn = document.getElementById('btnRadarScan');
+      loader.style.display = 'block';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/api/radar/scan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            videoPath: 'hd_clip.mp4',
+            maxDuration: 3600
+          })
+        });
+        const json = await res.json();
+        if (json.success && json.data) {
+          radarDataCache = json.data;
+          renderRadarUI(json.data);
+          alert('Varredura do Radar concluída com sucesso!');
+        } else {
+          throw new Error(json.error || 'Erro desconhecido');
+        }
+      } catch (e) {
+        alert('Erro na varredura do Radar: ' + e.message);
+      } finally {
+        loader.style.display = 'none';
+        btn.disabled = false;
+      }
+    }
+
     // Load initial QA on load
     loadQAReport();
+    loadRadarHighlights();
   </script>
 </body>
 </html>
