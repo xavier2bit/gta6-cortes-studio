@@ -1,0 +1,27 @@
+{
+  "name": "gta6-cortes-studio",
+  "version": "1.0.0",
+  "description": "Estúdio automatizado para corte e geração de vídeos virais de GTA 6 em 3 modelos (Meio a Meio, Página + Jogo, Só Cortes)",
+  "main": "cli.js",
+  "scripts": {
+    "start": "node server.js",
+    "studio": "node server.js",
+    "clip": "node cli.js",
+    "test-models": "node test_render_all.js"
+  },
+  "keywords": [
+    "gta6",
+    "shorts",
+    "reels",
+    "tiktok",
+    "clipper",
+    "hyperframes",
+    "opusclip"
+  ],
+  "author": "GTA 6 Cortes",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2",
+    "opentype.js": "^2.0.0"
+  }
+}

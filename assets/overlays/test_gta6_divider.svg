@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="130" viewBox="0 0 1080 130">
+  <defs>
+    <!-- Vice City Sunset Neon Gradient -->
+    <linearGradient id="viceSunset" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF007F" />
+      <stop offset="35%" stop-color="#FF5E00" />
+      <stop offset="70%" stop-color="#A000FF" />
+      <stop offset="100%" stop-color="#00F0FF" />
+    </linearGradient>
+
+    <!-- Chrome / Metallic Bevel Gradient -->
+    <linearGradient id="metallicBevel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9" />
+      <stop offset="45%" stop-color="#FFFFFF" stop-opacity="0.2" />
+      <stop offset="55%" stop-color="#000000" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.8" />
+    </linearGradient>
+
+    <!-- Deep Neon Glow Filter -->
+    <filter id="neonGlowHeavy" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="9" result="blur1" />
+      <feGaussianBlur stdDeviation="4" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur1" />
+        <feMergeNode in="blur2" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- NEON DIVIDER LINE WITH GLOW -->
+  <rect x="0" y="60" width="1080" height="10" fill="url(#viceSunset)" filter="url(#neonGlowHeavy)" />
+  <rect x="0" y="62" width="1080" height="6" fill="#FFFFFF" fill-opacity="0.7" />
+
+  <!-- CENTER EMBLEM CONTAINER (Aerodynamic Hexagonal / Pill Badge) -->
+  <g filter="url(#neonGlowHeavy)">
+    <!-- Outer Glow Shell -->
+    <rect x="425" y="15" width="230" height="100" rx="22" fill="#0A0612" stroke="url(#viceSunset)" stroke-width="4"/>
+    
+    <!-- Inner Accent Frame -->
+    <rect x="433" y="23" width="214" height="84" rx="16" fill="none" stroke="#FFFFFF" stroke-opacity="0.15" stroke-width="1.5"/>
+
+    <!-- AUTHENTIC GTA VI VECTOR GLYPH (Heavy Chiseled Roman Numeral) -->
+    <g transform="translate(485, 26)">
+      <!-- V Character -->
+      <path d="M 0 10 L 16 10 L 16 16 L 10 16 L 28 60 L 46 16 L 40 16 L 40 10 L 56 10 L 56 16 L 50 16 L 33 62 L 23 62 L 6 16 L 0 16 Z" 
+            fill="url(#viceSunset)" stroke="#FFFFFF" stroke-width="1.5" />
+      <path d="M 0 10 L 16 10 L 16 16 L 10 16 L 28 60 L 46 16 L 40 16 L 40 10 L 56 10 L 56 16 L 50 16 L 33 62 L 23 62 L 6 16 L 0 16 Z" 
+            fill="url(#metallicBevel)" />
+
+      <!-- I Character -->
+      <path d="M 70 10 L 98 10 L 98 16 L 90 16 L 90 56 L 98 56 L 98 62 L 70 62 L 70 56 L 78 56 L 78 16 L 70 16 Z" 
+            fill="url(#viceSunset)" stroke="#FFFFFF" stroke-width="1.5" />
+      <path d="M 70 10 L 98 10 L 98 16 L 90 16 L 90 56 L 98 56 L 98 62 L 70 62 L 70 56 L 78 56 L 78 16 L 70 16 Z" 
+            fill="url(#metallicBevel)" />
+    </g>
+
+    <!-- Sub-badge mini text: "VICE CITY" -->
+    <text x="540" y="104" font-family="Bebas Neue, Anton, Arial Black, sans-serif" font-size="12" font-weight="900" fill="#00F0FF" text-anchor="middle" letter-spacing="4">VICE CITY</text>
+  </g>
+
+  <!-- Left & Right Accent Diamonds -->
+  <polygon points="390,65 400,58 410,65 400,72" fill="#FF007F" filter="url(#neonGlowHeavy)"/>
+  <polygon points="670,65 680,58 690,65 680,72" fill="#00F0FF" filter="url(#neonGlowHeavy)"/>
+</svg>

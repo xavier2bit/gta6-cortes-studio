@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GTA 6 Cortes Studio — Gerador de Vídeos Virais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --neon-pink: #FF007F;
+      --neon-cyan: #00F0FF;
+      --neon-purple: #A000FF;
+      --neon-yellow: #FFE600;
+      --bg-dark: #0A0612;
+      --card-bg: #130E20;
+      --card-border: #261B3D;
+      --text-main: #FFFFFF;
+      --text-muted: #9E91B8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 10% 10%, rgba(255, 0, 127, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.1) 0%, transparent 40%);
+      padding-bottom: 60px;
+    }
+
+    header {
+      padding: 30px 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(10, 6, 18, 0.8);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-container {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-vi {
+      font-family: 'Orbitron', Georgia, serif;
+      font-size: 42px;
+      font-weight: 900;
+      font-style: italic;
+      background: linear-gradient(135deg, var(--neon-pink), var(--neon-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 25px rgba(255, 0, 127, 0.6);
+    }
+
+    .logo-title {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .logo-subtitle {
+      color: var(--neon-cyan);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    @media (max-width: 900px) {
+      .container { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      background: #0B0715;
+      border: 1.5px solid var(--card-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 15px;
+      transition: all 0.25s ease;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+    }
+
+    .presets-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .preset-btn {
+      background: rgba(255, 0, 127, 0.12);
+      border: 1px solid rgba(255, 0, 127, 0.4);
+      color: #FFB3D9;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .preset-btn:hover {
+      background: var(--neon-pink);
+      color: #fff;
+    }
+
+    .btn-main {
+      width: 100%;
+      background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+      border: none;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 900;
+      padding: 16px;
+      border-radius: 14px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      box-shadow: 0 0 25px rgba(255, 0, 127, 0.4);
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 35px rgba(255, 0, 127, 0.7);
+    }
+
+    .btn-main:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Model Selector Grid */
+    .models-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .model-card {
+      border: 2px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px;
+      background: #0B0715;
+      cursor: pointer;
+      transition: all 0.25s;
+      position: relative;
+    }
+
+    .model-card:hover {
+      border-color: rgba(0, 240, 255, 0.5);
+    }
+
+    .model-card.active {
+      border-color: var(--neon-cyan);
+      background: rgba(0, 240, 255, 0.05);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+    }
+
+    .model-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .model-card-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .model-card-badge {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--neon-pink);
+      color: #fff;
+    }
+
+    .model-card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Viral moments list */
+    .moments-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 320px;
+      overflow-y: auto;
+      margin-top: 15px;
+    }
+
+    .moment-item {
+      background: #0C0717;
+      border: 1px solid #241A38;
+      border-radius: 12px;
+      padding: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .moment-item:hover {
+      border-color: var(--neon-pink);
+      background: rgba(255, 0, 127, 0.05);
+    }
+
+    .moment-item.selected {
+      border-color: var(--neon-pink);
+      box-shadow: 0 0 15px rgba(255, 0, 127, 0.25);
+    }
+
+    .moment-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .moment-time {
+      color: var(--neon-cyan);
+      font-weight: 800;
+    }
+
+    .moment-score {
+      color: var(--neon-yellow);
+      font-weight: 800;
+    }
+
+    .moment-hook {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* Video player card */
+    .preview-player {
+      width: 100%;
+      max-height: 540px;
+      background: #000;
+      border-radius: 14px;
+      border: 2px solid var(--neon-pink);
+      box-shadow: 0 0 25px rgba(255, 0, 127, 0.3);
+      display: none;
+      margin-top: 20px;
+    }
+
+    .btn-download {
+      background: linear-gradient(135deg, #00C853, #00E676);
+      color: #000;
+      font-weight: 900;
+      padding: 14px;
+      border-radius: 12px;
+      text-align: center;
+      text-decoration: none;
+      display: none;
+      margin-top: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 15px;
+    }
+
+    .loader {
+      display: none;
+      text-align: center;
+      padding: 25px;
+      color: var(--neon-cyan);
+      font-weight: 700;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 240, 255, 0.2);
+      border-top: 4px solid var(--neon-cyan);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 12px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <div class="logo-vi">VI</div>
+      <div>
+        <div class="logo-title">GTA 6 CORTES STUDIO</div>
+        <div class="logo-subtitle">Automatizador de Cortes Virais para TikTok, Reels e Shorts</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- LEFT COLUMN: INPUTS & SETTINGS -->
+    <div class="card">
+      <div class="card-title">📹 1. Vídeo de Origem (YouTube)</div>
+      
+      <div class="input-group">
+        <label>URL do YouTuber / Gameplay</label>
+        <input type="text" id="videoUrl" placeholder="https://www.youtube.com/watch?v=..." value="https://www.youtube.com/watch?v=chge7GrCNc0">
+        
+        <div class="presets-row">
+          <span style="font-size: 11px; color: var(--text-muted); align-self: center;">Sugestões:</span>
+          <button class="preset-btn" onclick="setPreset('https://www.youtube.com/watch?v=chge7GrCNc0')">Davy Jones: Início Gameplay</button>
+          <button class="preset-btn" onclick="setPreset('https://www.youtube.com/watch?v=w546blqOvVU')">Davy Jones: Gameplay Longo</button>
+        </div>
+      </div>
+
+      <button class="btn-main" id="btnAnalyze" onclick="analyzeVideo()">
+        🔍 Analisar Vídeo & Detectar Cortes
+      </button>
+
+      <div class="loader" id="analyzeLoader">
+        <div class="spinner"></div>
+        <div>Baixando transcrição e analisando momentos com IA...</div>
+      </div>
+
+      <!-- MOMENTS SECTION -->
+      <div id="momentsContainer" style="display: none; margin-top: 25px;">
+        <label>🔥 Momentos Virais Detectados pela IA</label>
+        <div class="moments-list" id="momentsList"></div>
+      </div>
+
+      <!-- MANUAL TIMING -->
+      <div style="margin-top: 25px;">
+        <div class="card-title">⏱️ 2. Tempo do Corte</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+          <div class="input-group">
+            <label>Início (Segundos)</label>
+            <input type="number" id="startSec" value="600" min="0">
+          </div>
+          <div class="input-group">
+            <label>Duração (Segundos)</label>
+            <select id="durationSec">
+              <option value="15">15 segundos</option>
+              <option value="25">25 segundos</option>
+              <option value="30" selected>30 segundos</option>
+              <option value="45">45 segundos</option>
+              <option value="60">60 segundos</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: MODEL SELECTION & RENDER -->
+    <div class="card">
+      <div class="card-title">🎨 3. Escolha o Modelo de Vídeo</div>
+
+      <div class="models-grid">
+        <!-- MODEL 1 -->
+        <div class="model-card active" id="cardModelSplit" onclick="selectModel('split')">
+          <div class="model-card-header">
+            <div class="model-card-title">📱 Modelo 1: Tela Meio a Meio</div>
+            <span class="model-card-badge">RECOMENDADO</span>
+          </div>
+          <div class="model-card-desc">
+            Facecam do YouTuber em cima + Gameplay do GTA 6 em baixo. Divisor neon estilo Vice City com badge "VI" e legendas dinâmicas sincronizadas.
+          </div>
+        </div>
+
+        <!-- MODEL 2 -->
+        <div class="model-card" id="cardModelWeb" onclick="selectModel('web')">
+          <div class="model-card-header">
+            <div class="model-card-title">📰 Modelo 2: Estilo Página de GTA 6 + Jogo</div>
+            <span class="model-card-badge" style="background: var(--neon-cyan); color: #000;">PROMPT-MOTION</span>
+          </div>
+          <div class="model-card-desc">
+            Mockup de página web oficial Rockstar Newswire / X Leaks no topo com gameplay de alta ação na parte inferior.
+          </div>
+        </div>
+
+        <!-- MODEL 3 -->
+        <div class="model-card" id="cardModelDirect" onclick="selectModel('direct')">
+          <div class="model-card-header">
+            <div class="model-card-title">✂️ Modelo 3: Só Cortes (Shorts 9:16)</div>
+            <span class="model-card-badge" style="background: #00E676; color: #000;">VIRAL FAST</span>
+          </div>
+          <div class="model-card-desc">
+            Corte vertical 9:16 clássico focado na reação e ação com fundo ambiente desfocado, gancho no topo e legendas karaoke.
+          </div>
+        </div>
+      </div>
+
+      <!-- CUSTOMIZATION -->
+      <div class="input-group">
+        <label>Texto do Gancho (Hook no Topo)</label>
+        <input type="text" id="hookText" value="DAVY JONES REAGIU AO GTA 6!">
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        <div class="input-group">
+          <label>Badge Superior</label>
+          <input type="text" id="badgeText" value="GTA VI">
+        </div>
+        <div class="input-group">
+          <label>Tag do Canal</label>
+          <input type="text" id="channelTag" value="@GTA6CORTES">
+        </div>
+      </div>
+
+      <!-- TYPOGRAPHY & FONT SELECTOR -->
+      <div style="background: #0C0717; border: 1.5px solid var(--card-border); border-radius: 14px; padding: 16px; margin-bottom: 20px;">
+        <label style="color: #fff; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+          <span>🔤 Fonte das Legendas Dinâmicas</span>
+          <span style="font-size: 11px; background: rgba(255, 0, 127, 0.2); color: var(--neon-pink); padding: 2px 8px; border-radius: 4px; font-weight: 800;">ALTA RETENÇÃO</span>
+        </label>
+        <select id="fontName" style="cursor: pointer; font-weight: 700;">
+          <option value="Bebas Neue" selected>⚡ Bebas Neue — Viral TikTok &amp; Shorts (Recomendado)</option>
+          <option value="Anton">🔥 Anton — Ultra Bold &amp; Impactante</option>
+          <option value="Pricedown">🌴 Pricedown — Clássico Oficial GTA</option>
+          <option value="Montserrat">✨ Montserrat — Moderno &amp; Elegante</option>
+        </select>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">
+          Renderizada com kerning dinâmico e efeito karaoke pop sincronizado palavra por palavra.
+        </div>
+      </div>
+
+      <!-- LOFI AUDIO & QUALITY CONTROLS -->
+      <div style="background: #0C0717; border: 1.5px solid var(--card-border); border-radius: 14px; padding: 16px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <label style="margin: 0; color: #fff; display: flex; align-items: center; gap: 8px;">
+            <span>🎵 Música Lo-Fi de Fundo</span>
+            <span style="font-size: 11px; background: rgba(0,240,255,0.15); color: var(--neon-cyan); padding: 2px 6px; border-radius: 4px;">BAIXO / SUAVE</span>
+          </label>
+          <span id="lofiVolText" style="font-size: 13px; font-weight: 800; color: var(--neon-cyan);">8%</span>
+        </div>
+        <input type="range" id="lofiVolume" min="0" max="0.25" step="0.01" value="0.08" oninput="document.getElementById('lofiVolText').innerText = Math.round(this.value * 100) + '%'" style="cursor: pointer;">
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">
+          Mixada sutilmente por baixo das vozes e tiros do jogo sem abafar nada.
+        </div>
+      </div>
+
+      <button class="btn-main" id="btnRender" onclick="renderVideo()" style="margin-top: 10px;">
+        ⚡ GERAR CORTE VIRAL (1080p60)
+      </button>
+
+      <div class="loader" id="renderLoader">
+        <div class="spinner" style="border-top-color: var(--neon-pink);"></div>
+        <div>Baixando vídeo e renderizando composição 1080x1920 60FPS...</div>
+      </div>
+
+      <!-- PREVIEW & DOWNLOAD -->
+      <video id="videoPlayer" class="preview-player" controls autoplay loop playsinline></video>
+      <a id="btnDownload" class="btn-download" download>📥 Baixar Vídeo Renderizado (MP4)</a>
+    </div>
+  </div>
+
+  <script>
+    let currentModel = 'split';
+    let currentVideoId = null;
+
+    function setPreset(url) {
+      document.getElementById('videoUrl').value = url;
+    }
+
+    function selectModel(model) {
+      currentModel = model;
+      document.getElementById('cardModelSplit').classList.toggle('active', model === 'split');
+      document.getElementById('cardModelWeb').classList.toggle('active', model === 'web');
+      document.getElementById('cardModelDirect').classList.toggle('active', model === 'direct');
+    }
+
+    async function analyzeVideo() {
+      const url = document.getElementById('videoUrl').value.trim();
+      if (!url) return alert('Por favor, informe a URL do YouTube');
+
+      const btn = document.getElementById('btnAnalyze');
+      const loader = document.getElementById('analyzeLoader');
+      const container = document.getElementById('momentsContainer');
+      const list = document.getElementById('momentsList');
+
+      btn.disabled = true;
+      loader.style.display = 'block';
+      container.style.display = 'none';
+      list.innerHTML = '';
+
+      try {
+        const res = await fetch('/api/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url })
+        });
+        const data = await res.json();
+
+        if (data.error) throw new Error(data.error);
+
+        currentVideoId = data.info.id;
+        container.style.display = 'block';
+
+        data.moments.forEach((m, idx) => {
+          const div = document.createElement('div');
+          div.className = 'moment-item';
+          div.innerHTML = `
+            <div class="moment-header">
+              <span class="moment-time">⏱️ ${m.startSec}s - ${m.startSec + m.durationSec}s</span>
+              <span class="moment-score">🔥 Score: ${m.score}</span>
+            </div>
+            <div class="moment-hook">${m.hook}</div>
+          `;
+          div.onclick = () => {
+            document.querySelectorAll('.moment-item').forEach(el => el.classList.remove('selected'));
+            div.classList.add('selected');
+            document.getElementById('startSec').value = m.startSec;
+            document.getElementById('durationSec').value = m.durationSec;
+            document.getElementById('hookText').value = m.hook;
+          };
+          list.appendChild(div);
+        });
+
+        // Auto select first
+        if (data.moments.length > 0) {
+          list.children[0].click();
+        }
+
+      } catch (err) {
+        alert('Erro ao analisar vídeo: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        loader.style.display = 'none';
+      }
+    }
+
+    async function renderVideo() {
+      const url = document.getElementById('videoUrl').value.trim();
+      const startSec = document.getElementById('startSec').value;
+      const durationSec = document.getElementById('durationSec').value;
+      const hookText = document.getElementById('hookText').value;
+      const badgeText = document.getElementById('badgeText').value;
+      const channelTag = document.getElementById('channelTag').value;
+      const lofiVolume = document.getElementById('lofiVolume').value;
+      const fontName = document.getElementById('fontName').value;
+
+      const btn = document.getElementById('btnRender');
+      const loader = document.getElementById('renderLoader');
+      const player = document.getElementById('videoPlayer');
+      const dlBtn = document.getElementById('btnDownload');
+
+      btn.disabled = true;
+      loader.style.display = 'block';
+      player.style.display = 'none';
+      dlBtn.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/render', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            url,
+            videoId: currentVideoId,
+            model: currentModel,
+            startSec,
+            durationSec,
+            hookText,
+            badgeText,
+            channelTag,
+            lofiVolume,
+            fontName
+          })
+        });
+        const data = await res.json();
+        if (data.error) throw new Error(data.error);
+
+        player.src = data.videoUrl;
+        player.style.display = 'block';
+        player.load();
+        player.play();
+
+        dlBtn.href = data.videoUrl;
+        dlBtn.download = data.filename;
+        dlBtn.style.display = 'block';
+
+      } catch (err) {
+        alert('Erro ao renderizar vídeo: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        loader.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
