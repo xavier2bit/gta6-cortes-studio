@@ -22,8 +22,8 @@ async function runV2Pilot() {
 
   const outputs = [];
 
-  // 1. MODELO 1: REAÇÃO / SPLIT SCREEN V2 COM MOLDURA OFICIAL VICE PINK (GG NO CHAT)
-  console.log('\n2. Renderizando Modelo 1: Reação / Split Screen V2 (Moldura Oficial Vice Pink)...');
+  // 1. MODELO 1: REAÇÃO / SPLIT SCREEN V2 COM WEBCAM PROPORCIONAL & MOLDURA VICE PINK
+  console.log('\n2. Renderizando Modelo 1: Reação / Split Screen V2 (Webcam Proporcional 100% Corrigida)...');
   const out1 = path.join(config.paths.output, 'v2_modelo_1_split.mp4');
   await renderClip({
     inputVideoPath: rawClipPath,
@@ -36,14 +36,15 @@ async function runV2Pilot() {
     badgeText: 'GG NO CHAT',
     channelTag: '@ggnochat',
     framePreset: 'vice_pink',
+    facecamCrop: { x: 0.043, y: 0.022, w: 0.147, h: 0.207 }, // Proportional focus (zero distortion)
     gameplayCrop: { x: 0.07, y: 0.23, w: 0.50, h: 0.77 },
     lofiVolume: 0.08,
     fontName: 'Bebas Neue'
   });
-  outputs.push({ name: 'Modelo 1 - Reação Split V2 (Oficial Vice Pink)', path: out1 });
+  outputs.push({ name: 'Modelo 1 - Reação Split V2 (Webcam Proporcional Corrigida)', path: out1 });
 
-  // 2. MODELO 2: ANÁLISE EDITORIAL GG NO CHAT V2 COM MOLDURA 16:9
-  console.log('\n3. Renderizando Modelo 2: Análise Editorial GG NO CHAT V2 (Moldura 16:9)...');
+  // 2. MODELO 2: ANÁLISE EDITORIAL STOP-THE-SCROLL V2 (GAMEPLAY DOMINANTE 80% + CALLOUTS)
+  console.log('\n3. Renderizando Modelo 2: Análise Editorial Stop-The-Scroll (Gameplay Dominante 80%)...');
   const out2 = path.join(config.paths.output, 'v2_modelo_2_web_analise.mp4');
   await renderClip({
     inputVideoPath: rawClipPath,
@@ -52,16 +53,17 @@ async function runV2Pilot() {
     subtitles,
     clipStartSec: startSec,
     clipDurationSec: durationSec,
-    newsTitle: 'LUCIA NA CELA: DETALHES DE LEONIDA',
-    newsCategory: 'GG NO CHAT • ANÁLISE EDITORIAL',
+    newsTitle: 'VOCÊ REPAROU NA CELA DA LUCIA?',
+    newsSubtitle: 'A ILUMINAÇÃO VOLUMÉTRICA PROVA O NOVO MOTOR',
+    newsCategory: '🚨 DETALHE NOVO REVELADO',
     badgeText: 'GG NO CHAT',
     channelTag: '@ggnochat',
-    framePreset: 'wide_16x9',
-    gameplayCrop: { x: 0.07, y: 0.23, w: 0.50, h: 0.77 },
+    framePreset: 'subtle_dark',
+    gameplayCrop: { x: 0.12, y: 0.23, w: 0.325, h: 0.77 }, // Centered Lucia without streamer webcam
     lofiVolume: 0.08,
     fontName: 'Bebas Neue'
   });
-  outputs.push({ name: 'Modelo 2 - Análise Editorial V2 (Moldura 16:9)', path: out2 });
+  outputs.push({ name: 'Modelo 2 - Análise Editorial Stop-The-Scroll (Gameplay 80%)', path: out2 });
 
   // 3. MODELO 3: HIGHLIGHT / DIRECT SHORT V2 COM MOLDURA ROXO NOTURNO
   console.log('\n4. Renderizando Modelo 3: Highlight / Direct Short V2 (Moldura Roxo Noturno)...');

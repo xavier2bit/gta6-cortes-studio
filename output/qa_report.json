@@ -1,19 +1,19 @@
 {
   "studio": "GG NO CHAT — GTA 6 Cortes Studio V2",
-  "evaluatedAt": "2026-11-19T02:39:39.964Z",
+  "evaluatedAt": "2026-11-19T03:14:26.798Z",
   "overallStatus": "PASS (ALL CHECKS CLEARED)",
   "reports": [
     {
       "file": "v2_modelo_1_split.mp4",
       "fullPath": "F:\\GTA 6 CORTES\\output\\v2_modelo_1_split.mp4",
-      "timestamp": "2026-11-19T02:39:32.637Z",
+      "timestamp": "2026-11-19T03:14:19.229Z",
       "status": "PASS (EXCELLENT)",
       "p0_blocks": [],
       "warnings": [],
       "metrics": {
-        "fileSizeMB": "8.74",
+        "fileSizeMB": "8.60",
         "durationSec": "15.00",
-        "bitrateKbps": 4889,
+        "bitrateKbps": 4810,
         "width": 1080,
         "height": 1920,
         "videoCodec": "h264",
@@ -31,19 +31,19 @@
         "fabricated_claims_detected": false,
         "notes": "Scene describes Lucia in the Leonida prison cell. No fake Rockstar domain or fabricated metrics."
       },
-      "modelName": "Modelo 1 - Reação Split V2 (Oficial Vice Pink)"
+      "modelName": "Modelo 1 - Reação Split V2 (Webcam Proporcional Corrigida)"
     },
     {
       "file": "v2_modelo_2_web_analise.mp4",
       "fullPath": "F:\\GTA 6 CORTES\\output\\v2_modelo_2_web_analise.mp4",
-      "timestamp": "2026-11-19T02:39:34.642Z",
+      "timestamp": "2026-11-19T03:14:21.095Z",
       "status": "PASS (EXCELLENT)",
       "p0_blocks": [],
       "warnings": [],
       "metrics": {
-        "fileSizeMB": "6.64",
+        "fileSizeMB": "10.41",
         "durationSec": "15.00",
-        "bitrateKbps": 3715,
+        "bitrateKbps": 5821,
         "width": 1080,
         "height": 1920,
         "videoCodec": "h264",
@@ -61,19 +61,19 @@
         "fabricated_claims_detected": false,
         "notes": "Scene describes Lucia in the Leonida prison cell. No fake Rockstar domain or fabricated metrics."
       },
-      "modelName": "Modelo 2 - Análise Editorial V2 (Moldura 16:9)"
+      "modelName": "Modelo 2 - Análise Editorial Stop-The-Scroll (Gameplay 80%)"
     },
     {
       "file": "v2_modelo_3_direct_short.mp4",
       "fullPath": "F:\\GTA 6 CORTES\\output\\v2_modelo_3_direct_short.mp4",
-      "timestamp": "2026-11-19T02:39:36.304Z",
+      "timestamp": "2026-11-19T03:14:22.856Z",
       "status": "PASS (EXCELLENT)",
       "p0_blocks": [],
       "warnings": [],
       "metrics": {
-        "fileSizeMB": "11.94",
+        "fileSizeMB": "11.96",
         "durationSec": "15.00",
-        "bitrateKbps": 6676,
+        "bitrateKbps": 6689,
         "width": 1080,
         "height": 1920,
         "videoCodec": "h264",
@@ -96,14 +96,14 @@
     {
       "file": "v2_modelo_4_framed_edition.mp4",
       "fullPath": "F:\\GTA 6 CORTES\\output\\v2_modelo_4_framed_edition.mp4",
-      "timestamp": "2026-11-19T02:39:38.108Z",
+      "timestamp": "2026-11-19T03:14:24.782Z",
       "status": "PASS (EXCELLENT)",
       "p0_blocks": [],
       "warnings": [],
       "metrics": {
-        "fileSizeMB": "16.75",
+        "fileSizeMB": "16.72",
         "durationSec": "15.00",
-        "bitrateKbps": 9368,
+        "bitrateKbps": 9353,
         "width": 1080,
         "height": 1920,
         "videoCodec": "h264",
