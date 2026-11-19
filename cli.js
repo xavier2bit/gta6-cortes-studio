@@ -7,15 +7,17 @@ const { renderClip } = require('./lib/renderer');
 const config = require('./lib/config');
 
 function parseArgs() {
+  const brand = config.brand || require('./brand.json');
   const args = process.argv.slice(2);
   const options = {
     url: null,
     model: 'split', // 'split' | 'web' | 'direct'
     start: null,
-    duration: 30,
+    duration: 15,
     hook: null,
-    badge: 'GTA VI',
-    tag: '@GTA6CORTES',
+    badge: brand.display_name || 'GG NO CHAT',
+    tag: brand.handle || '@ggnochat',
+    frame: 'no_frame',
     auto: false,
     count: 3,
     lofi: 0.08,
@@ -32,6 +34,7 @@ function parseArgs() {
     else if (arg === '--hook' || arg === '-h') options.hook = args[++i];
     else if (arg === '--badge' || arg === '-b') options.badge = args[++i];
     else if (arg === '--tag' || arg === '-t') options.tag = args[++i];
+    else if (arg === '--frame') options.frame = args[++i];
     else if (arg === '--font' || arg === '-f') options.font = args[++i];
     else if (arg === '--auto' || arg === '-a') options.auto = true;
     else if (arg === '--count' || arg === '-c') options.count = parseInt(args[++i], 10);
@@ -129,7 +132,8 @@ Exemplos:
       channelTag: opts.tag,
       newsTitle: moment.hook.replace(/[😱🚨🗺️🔥🤯]/g, '').trim(),
       lofiVolume: opts.lofi,
-      fontName: opts.font
+      fontName: opts.font,
+      framePreset: opts.frame
     });
 
     try { fs.unlinkSync(tempRawClip); } catch (_) {}

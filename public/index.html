@@ -3,21 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GTA 6 Cortes Studio — Gerador de Vídeos Virais</title>
+  <title>GG NO CHAT — GTA 6 Cortes Studio V2</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --neon-pink: #FF007F;
+      --neon-pink: #FF2A85;
+      --neon-magenta: #FF6EC7;
+      --neon-orange: #FF7B00;
       --neon-cyan: #00F0FF;
-      --neon-purple: #A000FF;
-      --neon-yellow: #FFE600;
+      --night-purple: #1A0B2E;
       --bg-dark: #0A0612;
       --card-bg: #130E20;
       --card-border: #261B3D;
       --text-main: #FFFFFF;
       --text-muted: #9E91B8;
+      --safe-green: #00E676;
+      --safe-amber: #FFD600;
+      --safe-red: #FF1744;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,163 +32,176 @@
       font-family: 'Montserrat', sans-serif;
       min-height: 100vh;
       background-image: 
-        radial-gradient(circle at 10% 10%, rgba(255, 0, 127, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 10% 10%, rgba(255, 42, 133, 0.12) 0%, transparent 40%),
         radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.1) 0%, transparent 40%);
       padding-bottom: 60px;
     }
 
     header {
-      padding: 30px 20px;
-      text-align: center;
+      padding: 16px 24px;
       border-bottom: 1px solid var(--card-border);
-      background: rgba(10, 6, 18, 0.8);
-      backdrop-filter: blur(10px);
+      background: rgba(10, 6, 18, 0.85);
+      backdrop-filter: blur(12px);
       position: sticky;
       top: 0;
       z-index: 100;
-    }
-
-    .logo-container {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 15px;
+      justify-content: space-between;
     }
 
-    .logo-vi {
-      font-family: 'Orbitron', Georgia, serif;
-      font-size: 42px;
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid var(--neon-pink);
+      box-shadow: 0 0 15px rgba(255, 42, 133, 0.5);
+    }
+
+    .brand-title {
+      font-size: 20px;
       font-weight: 900;
-      font-style: italic;
+      letter-spacing: 1px;
       background: linear-gradient(135deg, var(--neon-pink), var(--neon-cyan));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 25px rgba(255, 0, 127, 0.6);
     }
 
-    .logo-title {
-      font-size: 26px;
-      font-weight: 900;
-      letter-spacing: 1px;
-    }
-
-    .logo-subtitle {
+    .brand-tag {
+      font-size: 12px;
       color: var(--neon-cyan);
-      font-size: 13px;
       font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Tabs Navigation */
+    .tabs-nav {
+      display: flex;
+      gap: 8px;
+      background: #0B0715;
+      padding: 6px;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn:hover { color: #fff; }
+    .tab-btn.active {
+      background: var(--neon-pink);
+      color: #fff;
+      box-shadow: 0 0 12px rgba(255, 42, 133, 0.4);
     }
 
     .container {
-      max-width: 1200px;
-      margin: 40px auto;
+      max-width: 1280px;
+      margin: 25px auto;
       padding: 0 20px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
     }
 
-    @media (max-width: 900px) {
-      .container { grid-template-columns: 1fr; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    @media (max-width: 960px) {
+      .grid-2col { grid-template-columns: 1fr; }
     }
 
     .card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 28px;
+      border-radius: 18px;
+      padding: 24px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     .card-title {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 800;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       display: flex;
       align-items: center;
       gap: 10px;
       color: #fff;
     }
 
-    .input-group {
-      margin-bottom: 20px;
-    }
+    .input-group { margin-bottom: 18px; }
 
     label {
       display: block;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.8px;
     }
 
     input, select, textarea {
       width: 100%;
       background: #0B0715;
       border: 1.5px solid var(--card-border);
-      border-radius: 12px;
-      padding: 14px 16px;
+      border-radius: 10px;
+      padding: 12px 14px;
       color: #fff;
       font-family: inherit;
-      font-size: 15px;
+      font-size: 14px;
       transition: all 0.25s ease;
     }
 
     input:focus, select:focus {
       outline: none;
       border-color: var(--neon-cyan);
-      box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
-    }
-
-    .presets-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-
-    .preset-btn {
-      background: rgba(255, 0, 127, 0.12);
-      border: 1px solid rgba(255, 0, 127, 0.4);
-      color: #FFB3D9;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 6px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .preset-btn:hover {
-      background: var(--neon-pink);
-      color: #fff;
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
     }
 
     .btn-main {
       width: 100%;
-      background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+      background: linear-gradient(135deg, var(--neon-pink), #A000FF);
       border: none;
       color: #fff;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 900;
-      padding: 16px;
-      border-radius: 14px;
+      padding: 14px;
+      border-radius: 12px;
       cursor: pointer;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      box-shadow: 0 0 25px rgba(255, 0, 127, 0.4);
-      transition: all 0.25s ease;
+      letter-spacing: 1.2px;
+      box-shadow: 0 0 20px rgba(255, 42, 133, 0.35);
+      transition: all 0.2s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .btn-main:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 35px rgba(255, 0, 127, 0.7);
+      box-shadow: 0 0 30px rgba(255, 42, 133, 0.6);
     }
 
     .btn-main:disabled {
@@ -193,52 +210,45 @@
       transform: none;
     }
 
-    /* Model Selector Grid */
+    /* Model Cards */
     .models-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 15px;
-      margin-bottom: 25px;
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
     .model-card {
       border: 2px solid var(--card-border);
       border-radius: 14px;
-      padding: 16px;
+      padding: 14px;
       background: #0B0715;
       cursor: pointer;
-      transition: all 0.25s;
-      position: relative;
+      transition: all 0.2s;
     }
 
-    .model-card:hover {
-      border-color: rgba(0, 240, 255, 0.5);
-    }
-
+    .model-card:hover { border-color: rgba(0, 240, 255, 0.5); }
     .model-card.active {
       border-color: var(--neon-cyan);
-      background: rgba(0, 240, 255, 0.05);
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+      background: rgba(0, 240, 255, 0.06);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
     }
 
     .model-card-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .model-card-title {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
       color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
-    .model-card-badge {
-      font-size: 11px;
+    .badge-pill {
+      font-size: 10px;
       font-weight: 800;
       padding: 3px 8px;
       border-radius: 6px;
@@ -247,106 +257,144 @@
     }
 
     .model-card-desc {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text-muted);
       line-height: 1.4;
     }
 
-    /* Viral moments list */
-    .moments-list {
+    /* Mobile Simulator for Review Tab */
+    .mobile-simulator-wrap {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      max-height: 320px;
-      overflow-y: auto;
-      margin-top: 15px;
+      align-items: center;
+      gap: 15px;
     }
 
-    .moment-item {
-      background: #0C0717;
-      border: 1px solid #241A38;
-      border-radius: 12px;
-      padding: 14px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .moment-item:hover {
-      border-color: var(--neon-pink);
-      background: rgba(255, 0, 127, 0.05);
-    }
-
-    .moment-item.selected {
-      border-color: var(--neon-pink);
-      box-shadow: 0 0 15px rgba(255, 0, 127, 0.25);
-    }
-
-    .moment-header {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
-      margin-bottom: 5px;
-    }
-
-    .moment-time {
-      color: var(--neon-cyan);
-      font-weight: 800;
-    }
-
-    .moment-score {
-      color: var(--neon-yellow);
-      font-weight: 800;
-    }
-
-    .moment-hook {
-      font-size: 14px;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    /* Video player card */
-    .preview-player {
-      width: 100%;
-      max-height: 540px;
+    .mobile-screen {
+      position: relative;
+      width: 320px;
+      height: 568px;
       background: #000;
-      border-radius: 14px;
-      border: 2px solid var(--neon-pink);
-      box-shadow: 0 0 25px rgba(255, 0, 127, 0.3);
-      display: none;
-      margin-top: 20px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 4px solid #2B2142;
+      box-shadow: 0 0 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 42, 133, 0.2);
     }
 
-    .btn-download {
-      background: linear-gradient(135deg, #00C853, #00E676);
-      color: #000;
+    .mobile-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Safe Zone Guides Overlay */
+    .safe-zone-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      display: block;
+    }
+
+    .safe-rail-right {
+      position: absolute;
+      right: 0;
+      top: 25%;
+      bottom: 20%;
+      width: 48px;
+      background: rgba(255, 23, 68, 0.25);
+      border-left: 1.5px dashed var(--safe-red);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 9px;
+      font-weight: 800;
+      color: var(--safe-red);
+    }
+
+    .safe-footer-bottom {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 110px;
+      background: rgba(255, 23, 68, 0.22);
+      border-top: 1.5px dashed var(--safe-red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--safe-red);
+    }
+
+    .safe-header-top {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 50px;
+      background: rgba(255, 214, 0, 0.18);
+      border-bottom: 1.5px dashed var(--safe-amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--safe-amber);
+    }
+
+    .safe-center-box {
+      position: absolute;
+      left: 12px;
+      right: 52px;
+      top: 55px;
+      bottom: 115px;
+      border: 1.5px solid var(--safe-green);
+      background: rgba(0, 230, 118, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
       font-weight: 900;
-      padding: 14px;
-      border-radius: 12px;
-      text-align: center;
-      text-decoration: none;
-      display: none;
-      margin-top: 15px;
+      color: var(--safe-green);
       text-transform: uppercase;
       letter-spacing: 1px;
-      font-size: 15px;
     }
+
+    /* QA Report Badge */
+    .qa-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .qa-pass { background: rgba(0, 230, 118, 0.15); color: var(--safe-green); border: 1px solid var(--safe-green); }
+    .qa-fail { background: rgba(255, 23, 68, 0.15); color: var(--safe-red); border: 1px solid var(--safe-red); }
 
     .loader {
       display: none;
       text-align: center;
-      padding: 25px;
+      padding: 20px;
       color: var(--neon-cyan);
       font-weight: 700;
     }
 
     .spinner {
-      border: 4px solid rgba(0, 240, 255, 0.2);
-      border-top: 4px solid var(--neon-cyan);
+      border: 3.5px solid rgba(0, 240, 255, 0.2);
+      border-top: 3.5px solid var(--neon-cyan);
       border-radius: 50%;
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       animation: spin 0.8s linear infinite;
-      margin: 0 auto 12px;
+      margin: 0 auto 10px;
     }
 
     @keyframes spin {
@@ -357,178 +405,283 @@
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
-    <div class="logo-container">
-      <div class="logo-vi">VI</div>
+    <div class="brand-group">
+      <img src="/assets/brand/processed/avatar_gg_circle_128.png" class="brand-logo-img" alt="GG NO CHAT" onerror="this.style.display='none'">
       <div>
-        <div class="logo-title">GTA 6 CORTES STUDIO</div>
-        <div class="logo-subtitle">Automatizador de Cortes Virais para TikTok, Reels e Shorts</div>
+        <div class="brand-title">GG NO CHAT</div>
+        <div class="brand-tag">GTA 6 CORTES STUDIO V2</div>
       </div>
+    </div>
+
+    <!-- 5 TABS NAVIGATION -->
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('library')">📚 Biblioteca</button>
+      <button class="tab-btn" onclick="switchTab('analysis')">🧠 Análise IA</button>
+      <button class="tab-btn" onclick="switchTab('editor')">✂️ Editor Visual</button>
+      <button class="tab-btn" onclick="switchTab('review')">📱 Review & Safe</button>
+      <button class="tab-btn" onclick="switchTab('export')">🚀 Exportar & QA</button>
     </div>
   </header>
 
   <div class="container">
-    <!-- LEFT COLUMN: INPUTS & SETTINGS -->
-    <div class="card">
-      <div class="card-title">📹 1. Vídeo de Origem (YouTube)</div>
-      
-      <div class="input-group">
-        <label>URL do YouTuber / Gameplay</label>
-        <input type="text" id="videoUrl" placeholder="https://www.youtube.com/watch?v=..." value="https://www.youtube.com/watch?v=chge7GrCNc0">
-        
-        <div class="presets-row">
-          <span style="font-size: 11px; color: var(--text-muted); align-self: center;">Sugestões:</span>
-          <button class="preset-btn" onclick="setPreset('https://www.youtube.com/watch?v=chge7GrCNc0')">Davy Jones: Início Gameplay</button>
-          <button class="preset-btn" onclick="setPreset('https://www.youtube.com/watch?v=w546blqOvVU')">Davy Jones: Gameplay Longo</button>
-        </div>
-      </div>
 
-      <button class="btn-main" id="btnAnalyze" onclick="analyzeVideo()">
-        🔍 Analisar Vídeo & Detectar Cortes
-      </button>
-
-      <div class="loader" id="analyzeLoader">
-        <div class="spinner"></div>
-        <div>Baixando transcrição e analisando momentos com IA...</div>
-      </div>
-
-      <!-- MOMENTS SECTION -->
-      <div id="momentsContainer" style="display: none; margin-top: 25px;">
-        <label>🔥 Momentos Virais Detectados pela IA</label>
-        <div class="moments-list" id="momentsList"></div>
-      </div>
-
-      <!-- MANUAL TIMING -->
-      <div style="margin-top: 25px;">
-        <div class="card-title">⏱️ 2. Tempo do Corte</div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+    <!-- TAB 1: BIBLIOTECA -->
+    <div id="tab-library" class="tab-content active">
+      <div class="grid-2col">
+        <div class="card">
+          <div class="card-title">📹 Origem do Conteúdo (YouTube)</div>
           <div class="input-group">
-            <label>Início (Segundos)</label>
-            <input type="number" id="startSec" value="600" min="0">
+            <label>URL do Gameplay / YouTuber</label>
+            <input type="text" id="videoUrl" value="https://www.youtube.com/watch?v=chge7GrCNc0">
+          </div>
+          <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+            <button class="btn-main" style="flex: 1;" onclick="analyzeVideo()">
+              🔍 Analisar Vídeo & Metadados
+            </button>
+          </div>
+          <div class="loader" id="libLoader">
+            <div class="spinner"></div>
+            <div>Consultando YouTube e extraindo transcrição...</div>
+          </div>
+          <div id="videoInfoBox" style="display: none; background: #0B0715; border-radius: 12px; padding: 14px; border: 1px solid var(--card-border);">
+            <div id="infoTitle" style="font-weight: 800; font-size: 15px; margin-bottom: 6px;"></div>
+            <div id="infoChannel" style="font-size: 13px; color: var(--neon-cyan);"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🎨 Identidade Visual da Marca (brand.json)</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div class="input-group">
+              <label>Nome do Canal</label>
+              <input type="text" id="brandDisplayName" value="GG NO CHAT">
+            </div>
+            <div class="input-group">
+              <label>Arroba / Handle Oficial</label>
+              <input type="text" id="brandHandle" value="@ggnochat">
+            </div>
           </div>
           <div class="input-group">
-            <label>Duração (Segundos)</label>
-            <select id="durationSec">
-              <option value="15">15 segundos</option>
-              <option value="25">25 segundos</option>
-              <option value="30" selected>30 segundos</option>
-              <option value="45">45 segundos</option>
-              <option value="60">60 segundos</option>
+            <label>Posição da Marca d'Água</label>
+            <select id="brandWatermarkPos">
+              <option value="bottom_center" selected>Inferior Central (Safe Zone)</option>
+              <option value="top_right">Superior Direito</option>
+              <option value="none">Ocultar</option>
             </select>
           </div>
+          <button class="btn-main" style="background: #241A38;" onclick="saveBrandSettings()">
+            💾 Salvar Configurações de Marca
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- RIGHT COLUMN: MODEL SELECTION & RENDER -->
-    <div class="card">
-      <div class="card-title">🎨 3. Escolha o Modelo de Vídeo</div>
-
-      <div class="models-grid">
-        <!-- MODEL 1 -->
-        <div class="model-card active" id="cardModelSplit" onclick="selectModel('split')">
-          <div class="model-card-header">
-            <div class="model-card-title">📱 Modelo 1: Tela Meio a Meio</div>
-            <span class="model-card-badge">RECOMENDADO</span>
-          </div>
-          <div class="model-card-desc">
-            Facecam do YouTuber em cima + Gameplay do GTA 6 em baixo. Divisor neon estilo Vice City com badge "VI" e legendas dinâmicas sincronizadas.
-          </div>
+    <!-- TAB 2: ANÁLISE IA -->
+    <div id="tab-analysis" class="tab-content">
+      <div class="card">
+        <div class="card-title">🧠 Momentos Virais Detectados pela IA</div>
+        <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">
+          Critério editorial rigoroso: apenas ganchos verdadeiros aderentes ao áudio e à cena em Leonida, sem notícias falsas ou métricas fabricadas.
         </div>
-
-        <!-- MODEL 2 -->
-        <div class="model-card" id="cardModelWeb" onclick="selectModel('web')">
-          <div class="model-card-header">
-            <div class="model-card-title">📰 Modelo 2: Estilo Página de GTA 6 + Jogo</div>
-            <span class="model-card-badge" style="background: var(--neon-cyan); color: #000;">PROMPT-MOTION</span>
-          </div>
-          <div class="model-card-desc">
-            Mockup de página web oficial Rockstar Newswire / X Leaks no topo com gameplay de alta ação na parte inferior.
-          </div>
-        </div>
-
-        <!-- MODEL 3 -->
-        <div class="model-card" id="cardModelDirect" onclick="selectModel('direct')">
-          <div class="model-card-header">
-            <div class="model-card-title">✂️ Modelo 3: Só Cortes (Shorts 9:16)</div>
-            <span class="model-card-badge" style="background: #00E676; color: #000;">VIRAL FAST</span>
-          </div>
-          <div class="model-card-desc">
-            Corte vertical 9:16 clássico focado na reação e ação com fundo ambiente desfocado, gancho no topo e legendas karaoke.
+        <div id="momentsList" style="display: flex; flex-direction: column; gap: 10px;">
+          <!-- Loaded dynamically -->
+          <div style="padding: 20px; text-align: center; color: var(--text-muted);">
+            Clique em "Analisar Vídeo" na Biblioteca para carregar os momentos com IA.
           </div>
         </div>
       </div>
-
-      <!-- CUSTOMIZATION -->
-      <div class="input-group">
-        <label>Texto do Gancho (Hook no Topo)</label>
-        <input type="text" id="hookText" value="DAVY JONES REAGIU AO GTA 6!">
-      </div>
-
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-        <div class="input-group">
-          <label>Badge Superior</label>
-          <input type="text" id="badgeText" value="GTA VI">
-        </div>
-        <div class="input-group">
-          <label>Tag do Canal</label>
-          <input type="text" id="channelTag" value="@GTA6CORTES">
-        </div>
-      </div>
-
-      <!-- TYPOGRAPHY & FONT SELECTOR -->
-      <div style="background: #0C0717; border: 1.5px solid var(--card-border); border-radius: 14px; padding: 16px; margin-bottom: 20px;">
-        <label style="color: #fff; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-          <span>🔤 Fonte das Legendas Dinâmicas</span>
-          <span style="font-size: 11px; background: rgba(255, 0, 127, 0.2); color: var(--neon-pink); padding: 2px 8px; border-radius: 4px; font-weight: 800;">ALTA RETENÇÃO</span>
-        </label>
-        <select id="fontName" style="cursor: pointer; font-weight: 700;">
-          <option value="Bebas Neue" selected>⚡ Bebas Neue — Viral TikTok &amp; Shorts (Recomendado)</option>
-          <option value="Anton">🔥 Anton — Ultra Bold &amp; Impactante</option>
-          <option value="Pricedown">🌴 Pricedown — Clássico Oficial GTA</option>
-          <option value="Montserrat">✨ Montserrat — Moderno &amp; Elegante</option>
-        </select>
-        <div style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">
-          Renderizada com kerning dinâmico e efeito karaoke pop sincronizado palavra por palavra.
-        </div>
-      </div>
-
-      <!-- LOFI AUDIO & QUALITY CONTROLS -->
-      <div style="background: #0C0717; border: 1.5px solid var(--card-border); border-radius: 14px; padding: 16px; margin-bottom: 20px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-          <label style="margin: 0; color: #fff; display: flex; align-items: center; gap: 8px;">
-            <span>🎵 Música Lo-Fi de Fundo</span>
-            <span style="font-size: 11px; background: rgba(0,240,255,0.15); color: var(--neon-cyan); padding: 2px 6px; border-radius: 4px;">BAIXO / SUAVE</span>
-          </label>
-          <span id="lofiVolText" style="font-size: 13px; font-weight: 800; color: var(--neon-cyan);">8%</span>
-        </div>
-        <input type="range" id="lofiVolume" min="0" max="0.25" step="0.01" value="0.08" oninput="document.getElementById('lofiVolText').innerText = Math.round(this.value * 100) + '%'" style="cursor: pointer;">
-        <div style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">
-          Mixada sutilmente por baixo das vozes e tiros do jogo sem abafar nada.
-        </div>
-      </div>
-
-      <button class="btn-main" id="btnRender" onclick="renderVideo()" style="margin-top: 10px;">
-        ⚡ GERAR CORTE VIRAL (1080p60)
-      </button>
-
-      <div class="loader" id="renderLoader">
-        <div class="spinner" style="border-top-color: var(--neon-pink);"></div>
-        <div>Baixando vídeo e renderizando composição 1080x1920 60FPS...</div>
-      </div>
-
-      <!-- PREVIEW & DOWNLOAD -->
-      <video id="videoPlayer" class="preview-player" controls autoplay loop playsinline></video>
-      <a id="btnDownload" class="btn-download" download>📥 Baixar Vídeo Renderizado (MP4)</a>
     </div>
+
+    <!-- TAB 3: EDITOR VISUAL -->
+    <div id="tab-editor" class="tab-content">
+      <div class="grid-2col">
+        <!-- Models & Framing -->
+        <div class="card">
+          <div class="card-title">🎨 Modelo & Enquadramento Inteligente</div>
+
+          <div class="models-grid">
+            <div class="model-card active" id="cardModelSplit" onclick="selectModel('split')">
+              <div class="model-card-header">
+                <div class="model-card-title">📱 Modelo 1: Reação / Split Screen V2</div>
+                <span class="badge-pill">SMART CROP</span>
+              </div>
+              <div class="model-card-desc">
+                Streamer no topo + Gameplay com enquadramento de Lucia centralizada sem cortes. Divisor vetor GTA VI e @ggnochat.
+              </div>
+            </div>
+
+            <div class="model-card" id="cardModelWeb" onclick="selectModel('web')">
+              <div class="model-card-header">
+                <div class="model-card-title">📰 Modelo 2: Análise Editorial GG NO CHAT V2</div>
+                <span class="badge-pill" style="background: var(--neon-cyan); color: #000;">NARRATIVA DINÂMICA</span>
+              </div>
+              <div class="model-card-desc">
+                Card editorial legítimo nos primeiros 2.5s recolhendo suavemente ao topo para dar 100% de destaque à gameplay em 1080p.
+              </div>
+            </div>
+
+            <div class="model-card" id="cardModelDirect" onclick="selectModel('direct')">
+              <div class="model-card-header">
+                <div class="model-card-title">✂️ Modelo 3: Highlight / Direct Short V2</div>
+                <span class="badge-pill" style="background: var(--safe-green); color: #000;">9:16 ZERO BLUR</span>
+              </div>
+              <div class="model-card-desc">
+                Reframe vertical 9:16 imersivo focado na ação. Elimina as enormes barras de blur cinza/escuro.
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Texto do Gancho (Hook Aderente à Cena)</label>
+            <input type="text" id="hookText" value="LUCIA NA CELA: 'CARACA, QUE ISSO?'">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div class="input-group">
+              <label>Moldura Estilizada (Alpha Real)</label>
+              <select id="framePreset">
+                <option value="no_frame" selected>Sem Moldura (Padrão Limpo)</option>
+                <option value="subtle_dark">Roxo Noturno (Discreta)</option>
+                <option value="vice_pink">Rosa Neon Vice City</option>
+                <option value="wide_16x9">Wide 16:9 Central</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label>Fonte das Legendas</label>
+              <select id="fontName">
+                <option value="Bebas Neue" selected>⚡ Bebas Neue (Alta Retenção)</option>
+                <option value="Anton">🔥 Anton (Ultra Bold)</option>
+                <option value="Pricedown">🌴 Pricedown (Oficial GTA)</option>
+                <option value="Montserrat">✨ Montserrat (Moderno)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Audio & Render Trigger -->
+        <div class="card">
+          <div class="card-title">🔊 Áudio & Normalização Broadcast (-16 LUFS)</div>
+          
+          <div style="background: #0B0715; border-radius: 12px; padding: 16px; border: 1px solid var(--card-border); margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+              <span style="font-size: 13px; font-weight: 700;">Música Lo-Fi de Fundo</span>
+              <span id="lofiVolLabel" style="font-size: 13px; font-weight: 800; color: var(--neon-cyan);">8%</span>
+            </div>
+            <input type="range" id="lofiVolume" min="0" max="0.20" step="0.01" value="0.08" oninput="document.getElementById('lofiVolLabel').innerText = Math.round(this.value * 100) + '%'">
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">
+              Ducking automático: a música reduz de volume durante as falas dos personagens.
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+            <div class="input-group">
+              <label>Início (s)</label>
+              <input type="number" id="startSec" value="600">
+            </div>
+            <div class="input-group">
+              <label>Duração (s)</label>
+              <input type="number" id="durationSec" value="15">
+            </div>
+          </div>
+
+          <button class="btn-main" id="btnRender" onclick="renderVideo()">
+            ⚡ RENDERIZAR CORTE V2 (1080p60 + QA)
+          </button>
+
+          <div class="loader" id="renderLoader">
+            <div class="spinner"></div>
+            <div>Processando composição, normalizando áudio (-16 LUFS) e gerando QA...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: REVIEW & SAFE ZONES -->
+    <div id="tab-review" class="tab-content">
+      <div class="grid-2col">
+        <div class="card mobile-simulator-wrap">
+          <div class="card-title" style="align-self: flex-start;">📱 Simulador Mobile & Guias de Safe Zone</div>
+          
+          <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+            <button class="badge-pill" style="cursor: pointer;" onclick="toggleSafeGuide('all')">Universal</button>
+            <button class="badge-pill" style="background:#00F0FF; color:#000; cursor: pointer;" onclick="toggleSafeGuide('tiktok')">TikTok</button>
+            <button class="badge-pill" style="background:#E1306C; cursor: pointer;" onclick="toggleSafeGuide('reels')">Reels</button>
+            <button class="badge-pill" style="background:#FF0000; cursor: pointer;" onclick="toggleSafeGuide('shorts')">Shorts</button>
+          </div>
+
+          <div class="mobile-screen">
+            <video id="mobilePlayer" class="mobile-video" controls autoplay loop playsinline src="/output/v2_modelo_1_split.mp4"></video>
+            
+            <!-- Safe Zone Overlay -->
+            <div id="safeOverlay" class="safe-zone-overlay">
+              <div class="safe-header-top">TOP SAFE (120-180px)</div>
+              <div class="safe-center-box">ÁREA DE ALTA VISIBILIDADE</div>
+              <div class="safe-rail-right">
+                <span>❤️</span>
+                <span>💬</span>
+                <span>🔖</span>
+                <span>↗️</span>
+              </div>
+              <div class="safe-footer-bottom">LEGENDA &amp; BOTÕES DA PLATAFORMA (380px)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">🔍 Folha de Contato (Auditoria 0s a 15s)</div>
+          <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">
+            Amostragem em [0, 0.5, 1, 2, 4, 7, 10, 13, 15s] para inspecionar enquadramento e corte de personagens.
+          </div>
+          <img id="contactSheetImg" src="/output/contact_sheet_model_1.jpg" style="width: 100%; border-radius: 12px; border: 1px solid var(--card-border);" alt="Contact Sheet">
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: EXPORTAÇÃO & QA REPORT -->
+    <div id="tab-export" class="tab-content">
+      <div class="card">
+        <div class="card-title">📋 Relatório Automatizado de Qualidade (QA Report)</div>
+        
+        <div style="display: flex; gap: 20px; align-items: center; margin-bottom: 20px;">
+          <div id="qaStatusBadge" class="qa-badge qa-pass">✅ PASS (ALL CHECKS CLEARED)</div>
+          <div id="qaLufsBadge" style="font-size: 14px; font-weight: 800; color: var(--neon-cyan);">Loudness: -16.5 LUFS</div>
+          <div id="qaTruePeakBadge" style="font-size: 14px; font-weight: 800; color: var(--safe-green);">True Peak: -1.1 dBFS</div>
+        </div>
+
+        <div style="background: #090510; border-radius: 12px; padding: 18px; border: 1px solid var(--card-border); font-family: monospace; font-size: 13px; max-height: 380px; overflow-y: auto;" id="qaJsonBox">
+          <!-- Loaded via /api/qa -->
+        </div>
+
+        <div style="display: flex; gap: 15px; margin-top: 20px;">
+          <a id="btnDownloadVideo" href="/output/v2_modelo_1_split.mp4" download class="btn-main" style="text-decoration: none;">
+            📥 Baixar Vídeo Renderizado (MP4)
+          </a>
+          <a href="/output/qa_report.json" download class="btn-main" style="background: #201736; text-decoration: none;">
+            📄 Baixar Relatório QA (JSON)
+          </a>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <script>
     let currentModel = 'split';
     let currentVideoId = null;
 
-    function setPreset(url) {
-      document.getElementById('videoUrl').value = url;
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      
+      const targetBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.innerText.toLowerCase().includes(tabId.slice(0,3)));
+      if (targetBtn) targetBtn.classList.add('active');
+      
+      const content = document.getElementById('tab-' + tabId);
+      if (content) content.classList.add('active');
+
+      if (tabId === 'export') loadQAReport();
     }
 
     function selectModel(model) {
@@ -536,21 +689,29 @@
       document.getElementById('cardModelSplit').classList.toggle('active', model === 'split');
       document.getElementById('cardModelWeb').classList.toggle('active', model === 'web');
       document.getElementById('cardModelDirect').classList.toggle('active', model === 'direct');
+
+      if (model === 'split') {
+        document.getElementById('hookText').value = 'LUCIA NA CELA: "CARACA, QUE ISSO?"';
+      } else if (model === 'web') {
+        document.getElementById('hookText').value = 'LUCIA NA CELA: DETALHES DE LEONIDA';
+      } else {
+        document.getElementById('hookText').value = 'LUCIA EXPLORANDO A PRISÃO DE LEONIDA';
+      }
+    }
+
+    function toggleSafeGuide(type) {
+      const el = document.getElementById('safeOverlay');
+      el.style.display = (el.style.display === 'none') ? 'block' : 'block';
     }
 
     async function analyzeVideo() {
       const url = document.getElementById('videoUrl').value.trim();
-      if (!url) return alert('Por favor, informe a URL do YouTube');
-
-      const btn = document.getElementById('btnAnalyze');
-      const loader = document.getElementById('analyzeLoader');
-      const container = document.getElementById('momentsContainer');
+      const loader = document.getElementById('libLoader');
+      const box = document.getElementById('videoInfoBox');
       const list = document.getElementById('momentsList');
 
-      btn.disabled = true;
       loader.style.display = 'block';
-      container.style.display = 'none';
-      list.innerHTML = '';
+      box.style.display = 'none';
 
       try {
         const res = await fetch('/api/analyze', {
@@ -559,101 +720,124 @@
           body: JSON.stringify({ url })
         });
         const data = await res.json();
-
         if (data.error) throw new Error(data.error);
 
         currentVideoId = data.info.id;
-        container.style.display = 'block';
+        box.style.display = 'block';
+        document.getElementById('infoTitle').innerText = data.info.title;
+        document.getElementById('infoChannel').innerText = '👤 Canal: ' + data.info.channel + ' | Duração: ' + Math.floor(data.info.duration / 60) + 'm ' + (data.info.duration % 60) + 's';
 
+        list.innerHTML = '';
         data.moments.forEach((m, idx) => {
           const div = document.createElement('div');
-          div.className = 'moment-item';
+          div.style = 'background: #0B0715; border: 1px solid var(--card-border); border-radius: 12px; padding: 14px; cursor: pointer;';
           div.innerHTML = `
-            <div class="moment-header">
-              <span class="moment-time">⏱️ ${m.startSec}s - ${m.startSec + m.durationSec}s</span>
-              <span class="moment-score">🔥 Score: ${m.score}</span>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+              <span style="color: var(--neon-cyan); font-weight: 800;">⏱️ ${m.startSec}s - ${m.startSec + m.durationSec}s</span>
+              <span style="color: #FFE600; font-weight: 800;">🔥 Score: ${m.score}</span>
             </div>
-            <div class="moment-hook">${m.hook}</div>
+            <div style="font-weight: 700; color: #fff;">${m.hook}</div>
           `;
           div.onclick = () => {
-            document.querySelectorAll('.moment-item').forEach(el => el.classList.remove('selected'));
-            div.classList.add('selected');
             document.getElementById('startSec').value = m.startSec;
             document.getElementById('durationSec').value = m.durationSec;
             document.getElementById('hookText').value = m.hook;
+            switchTab('editor');
           };
           list.appendChild(div);
         });
 
-        // Auto select first
-        if (data.moments.length > 0) {
-          list.children[0].click();
-        }
-
-      } catch (err) {
-        alert('Erro ao analisar vídeo: ' + err.message);
+      } catch (e) {
+        alert('Erro ao analisar vídeo: ' + e.message);
       } finally {
-        btn.disabled = false;
         loader.style.display = 'none';
       }
     }
 
     async function renderVideo() {
-      const url = document.getElementById('videoUrl').value.trim();
-      const startSec = document.getElementById('startSec').value;
-      const durationSec = document.getElementById('durationSec').value;
-      const hookText = document.getElementById('hookText').value;
-      const badgeText = document.getElementById('badgeText').value;
-      const channelTag = document.getElementById('channelTag').value;
-      const lofiVolume = document.getElementById('lofiVolume').value;
-      const fontName = document.getElementById('fontName').value;
-
       const btn = document.getElementById('btnRender');
       const loader = document.getElementById('renderLoader');
-      const player = document.getElementById('videoPlayer');
-      const dlBtn = document.getElementById('btnDownload');
-
       btn.disabled = true;
       loader.style.display = 'block';
-      player.style.display = 'none';
-      dlBtn.style.display = 'none';
 
       try {
         const res = await fetch('/api/render', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            url,
+            url: document.getElementById('videoUrl').value.trim(),
             videoId: currentVideoId,
             model: currentModel,
-            startSec,
-            durationSec,
-            hookText,
-            badgeText,
-            channelTag,
-            lofiVolume,
-            fontName
+            startSec: document.getElementById('startSec').value,
+            durationSec: document.getElementById('durationSec').value,
+            hookText: document.getElementById('hookText').value,
+            badgeText: document.getElementById('brandDisplayName').value,
+            channelTag: document.getElementById('brandHandle').value,
+            framePreset: document.getElementById('framePreset').value,
+            fontName: document.getElementById('fontName').value,
+            lofiVolume: document.getElementById('lofiVolume').value
           })
         });
+
         const data = await res.json();
         if (data.error) throw new Error(data.error);
 
+        // Update Review Player
+        const player = document.getElementById('mobilePlayer');
         player.src = data.videoUrl;
-        player.style.display = 'block';
         player.load();
         player.play();
 
-        dlBtn.href = data.videoUrl;
-        dlBtn.download = data.filename;
-        dlBtn.style.display = 'block';
+        document.getElementById('contactSheetImg').src = data.contactSheetUrl;
+        document.getElementById('btnDownloadVideo').href = data.videoUrl;
+        document.getElementById('btnDownloadVideo').download = data.filename;
 
-      } catch (err) {
-        alert('Erro ao renderizar vídeo: ' + err.message);
+        switchTab('review');
+
+      } catch (e) {
+        alert('Erro ao renderizar vídeo: ' + e.message);
       } finally {
         btn.disabled = false;
         loader.style.display = 'none';
       }
     }
+
+    async function loadQAReport() {
+      try {
+        const res = await fetch('/api/qa');
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('qaJsonBox').innerText = JSON.stringify(data.data, null, 2);
+          const r1 = data.data.reports[0];
+          if (r1 && r1.metrics) {
+            document.getElementById('qaLufsBadge').innerText = 'Loudness: ' + r1.metrics.integratedLufs + ' LUFS';
+            document.getElementById('qaTruePeakBadge').innerText = 'True Peak: ' + r1.metrics.truePeakDbfs + ' dBFS';
+          }
+        }
+      } catch (e) {
+        console.error('Failed to load QA report', e);
+      }
+    }
+
+    async function saveBrandSettings() {
+      try {
+        await fetch('/api/brand', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            display_name: document.getElementById('brandDisplayName').value,
+            handle: document.getElementById('brandHandle').value,
+            watermark_position: document.getElementById('brandWatermarkPos').value
+          })
+        });
+        alert('Configurações de marca salvas com sucesso!');
+      } catch (e) {
+        alert('Erro ao salvar marca: ' + e.message);
+      }
+    }
+
+    // Load initial QA on load
+    loadQAReport();
   </script>
 </body>
 </html>

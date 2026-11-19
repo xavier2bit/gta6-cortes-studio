@@ -1,0 +1,127 @@
+{
+  "studio": "GG NO CHAT — GTA 6 Cortes Studio V2",
+  "evaluatedAt": "2026-11-19T02:03:08.617Z",
+  "overallStatus": "PASS (ALL CHECKS CLEARED)",
+  "reports": [
+    {
+      "file": "v2_modelo_1_split.mp4",
+      "fullPath": "output/v2_modelo_1_split.mp4",
+      "timestamp": "2026-11-19T02:03:00.973Z",
+      "status": "PASS (EXCELLENT)",
+      "p0_blocks": [],
+      "warnings": [],
+      "metrics": {
+        "fileSizeMB": "13.14",
+        "durationSec": "15.00",
+        "bitrateKbps": 7351,
+        "width": 1080,
+        "height": 1920,
+        "videoCodec": "h264",
+        "fps": 60,
+        "audioCodec": "aac",
+        "integratedLufs": -16.5,
+        "truePeakDbfs": -1.1
+      },
+      "provenance": {
+        "source_url": "https://www.youtube.com/watch?v=chge7GrCNc0",
+        "source_in_sec": 600,
+        "source_out_sec": 615,
+        "brand_handle": "@ggnochat",
+        "fact_checked": true,
+        "fabricated_claims_detected": false,
+        "notes": "Scene describes Lucia in the Leonida prison cell. No fake Rockstar domain or fabricated metrics."
+      },
+      "modelName": "Modelo 1 - Reação Split V2"
+    },
+    {
+      "file": "v2_modelo_2_web_analise.mp4",
+      "fullPath": "output/v2_modelo_2_web_analise.mp4",
+      "timestamp": "2026-11-19T02:03:02.908Z",
+      "status": "PASS (EXCELLENT)",
+      "p0_blocks": [],
+      "warnings": [],
+      "metrics": {
+        "fileSizeMB": "15.70",
+        "durationSec": "15.00",
+        "bitrateKbps": 8781,
+        "width": 1080,
+        "height": 1920,
+        "videoCodec": "h264",
+        "fps": 60,
+        "audioCodec": "aac",
+        "integratedLufs": -16.5,
+        "truePeakDbfs": -1.1
+      },
+      "provenance": {
+        "source_url": "https://www.youtube.com/watch?v=chge7GrCNc0",
+        "source_in_sec": 600,
+        "source_out_sec": 615,
+        "brand_handle": "@ggnochat",
+        "fact_checked": true,
+        "fabricated_claims_detected": false,
+        "notes": "Scene describes Lucia in the Leonida prison cell. No fake Rockstar domain or fabricated metrics."
+      },
+      "modelName": "Modelo 2 - Análise Editorial V2"
+    },
+    {
+      "file": "v2_modelo_3_direct_short.mp4",
+      "fullPath": "output/v2_modelo_3_direct_short.mp4",
+      "timestamp": "2026-11-19T02:03:04.863Z",
+      "status": "PASS (EXCELLENT)",
+      "p0_blocks": [],
+      "warnings": [],
+      "metrics": {
+        "fileSizeMB": "16.73",
+        "durationSec": "15.00",
+        "bitrateKbps": 9355,
+        "width": 1080,
+        "height": 1920,
+        "videoCodec": "h264",
+        "fps": 60,
+        "audioCodec": "aac",
+        "integratedLufs": -16.5,
+        "truePeakDbfs": -1.1
+      },
+      "provenance": {
+        "source_url": "https://www.youtube.com/watch?v=chge7GrCNc0",
+        "source_in_sec": 600,
+        "source_out_sec": 615,
+        "brand_handle": "@ggnochat",
+        "fact_checked": true,
+        "fabricated_claims_detected": false,
+        "notes": "Scene describes Lucia in the Leonida prison cell. No fake Rockstar domain or fabricated metrics."
+      },
+      "modelName": "Modelo 3 - Direct Short V2"
+    },
+    {
+      "file": "v2_modelo_4_framed_edition.mp4",
+      "fullPath": "output/v2_modelo_4_framed_edition.mp4",
+      "timestamp": "2026-11-19T02:03:06.881Z",
+      "status": "PASS (EXCELLENT)",
+      "p0_blocks": [],
+      "warnings": [],
+      "metrics": {
+        "fileSizeMB": "8.24",
+        "durationSec": "15.00",
+        "bitrateKbps": 4606,
+        "width": 1080,
+        "height": 1920,
+        "videoCodec": "h264",
+        "fps": 60,
+        "audioCodec": "aac",
+        "integratedLufs": -16.5,
+        "truePeakDbfs": -1.1
+      },
+      "provenance": {
+        "source_url": "https://www.youtube.com/watch?v=chge7GrCNc0",
+        "source_in_sec": 600,
+        "source_out_sec": 615,
+        "brand_handle": "@ggnochat",
+        "fact_checked": true,
+        "fabricated_claims_detected": false,
+        "notes": "Scene describes Lucia in the Leonida prison cell. No fake Rockstar domain or fabricated metrics."
+      },
+      "modelName": "Modelo 4 - Framed Edition V2"
+    }
+  ]
+}

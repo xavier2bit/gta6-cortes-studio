@@ -1,0 +1,24 @@
+{
+  "display_name": "GG NO CHAT",
+  "handle": "@ggnochat",
+  "tagline": "GTA 6 Cortes & Gameplays",
+  "logo_path": "assets/brand/processed/avatar_gg_circle_128.png",
+  "logo_micro_path": "assets/brand/processed/avatar_gg_micro_48.png",
+  "palette": {
+    "neon_pink": "#FF2A85",
+    "magenta": "#FF6EC7",
+    "sunset_orange": "#FF7B00",
+    "electric_cyan": "#00F0FF",
+    "night_purple": "#1A0B2E",
+    "chrome_white": "#F8F9FA",
+    "metallic_silver": "#A0A8B8"
+  },
+  "watermark_position": "bottom_center",
+  "frames": {
+    "no_frame": null,
+    "subtle_dark": "assets/brand/processed/overlay_subtle_dark.png",
+    "vice_pink": "assets/brand/processed/overlay_vice_pink.png",
+    "wide_16x9": "assets/brand/processed/overlay_wide_16x9.png"
+  },
+  "default_frame": "no_frame"
+}
