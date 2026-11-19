@@ -22,8 +22,8 @@ async function runV2Pilot() {
 
   const outputs = [];
 
-  // 1. MODELO 1: REAÇÃO / SPLIT SCREEN V2
-  console.log('\n2. Renderizando Modelo 1: Reação / Split Screen V2...');
+  // 1. MODELO 1: REAÇÃO / SPLIT SCREEN V2 COM MOLDURA OFICIAL VICE PINK (GG NO CHAT)
+  console.log('\n2. Renderizando Modelo 1: Reação / Split Screen V2 (Moldura Oficial Vice Pink)...');
   const out1 = path.join(config.paths.output, 'v2_modelo_1_split.mp4');
   await renderClip({
     inputVideoPath: rawClipPath,
@@ -35,14 +35,15 @@ async function runV2Pilot() {
     hookText: 'LUCIA NA CELA: "CARACA, QUE ISSO?"',
     badgeText: 'GG NO CHAT',
     channelTag: '@ggnochat',
+    framePreset: 'vice_pink',
     gameplayCrop: { x: 0.07, y: 0.23, w: 0.50, h: 0.77 },
     lofiVolume: 0.08,
     fontName: 'Bebas Neue'
   });
-  outputs.push({ name: 'Modelo 1 - Reação Split V2', path: out1 });
+  outputs.push({ name: 'Modelo 1 - Reação Split V2 (Oficial Vice Pink)', path: out1 });
 
-  // 2. MODELO 2: ANÁLISE EDITORIAL GG NO CHAT V2
-  console.log('\n3. Renderizando Modelo 2: Análise Editorial GG NO CHAT V2...');
+  // 2. MODELO 2: ANÁLISE EDITORIAL GG NO CHAT V2 COM MOLDURA 16:9
+  console.log('\n3. Renderizando Modelo 2: Análise Editorial GG NO CHAT V2 (Moldura 16:9)...');
   const out2 = path.join(config.paths.output, 'v2_modelo_2_web_analise.mp4');
   await renderClip({
     inputVideoPath: rawClipPath,
@@ -51,18 +52,19 @@ async function runV2Pilot() {
     subtitles,
     clipStartSec: startSec,
     clipDurationSec: durationSec,
-    newsTitle: 'LUCIA NA CELA: DETALHES DA PRISÃO DE LEONIDA',
+    newsTitle: 'LUCIA NA CELA: DETALHES DE LEONIDA',
     newsCategory: 'GG NO CHAT • ANÁLISE EDITORIAL',
     badgeText: 'GG NO CHAT',
     channelTag: '@ggnochat',
+    framePreset: 'wide_16x9',
     gameplayCrop: { x: 0.07, y: 0.23, w: 0.50, h: 0.77 },
     lofiVolume: 0.08,
     fontName: 'Bebas Neue'
   });
-  outputs.push({ name: 'Modelo 2 - Análise Editorial V2', path: out2 });
+  outputs.push({ name: 'Modelo 2 - Análise Editorial V2 (Moldura 16:9)', path: out2 });
 
-  // 3. MODELO 3: HIGHLIGHT / DIRECT SHORT V2 (SMART CROP 9:16 ZERO BLUR)
-  console.log('\n4. Renderizando Modelo 3: Highlight / Direct Short V2...');
+  // 3. MODELO 3: HIGHLIGHT / DIRECT SHORT V2 COM MOLDURA ROXO NOTURNO
+  console.log('\n4. Renderizando Modelo 3: Highlight / Direct Short V2 (Moldura Roxo Noturno)...');
   const out3 = path.join(config.paths.output, 'v2_modelo_3_direct_short.mp4');
   await renderClip({
     inputVideoPath: rawClipPath,
@@ -74,32 +76,34 @@ async function runV2Pilot() {
     hookText: 'LUCIA EXPLORANDO A PRISÃO DE LEONIDA',
     badgeText: 'GG NO CHAT',
     channelTag: '@ggnochat',
+    framePreset: 'subtle_dark',
     directMode: 'smart_crop',
     cropAnchor: { x: 0.10, y: 0.0, w: 0.5625, h: 1.0 },
     lofiVolume: 0.08,
     fontName: 'Bebas Neue'
   });
-  outputs.push({ name: 'Modelo 3 - Direct Short V2', path: out3 });
+  outputs.push({ name: 'Modelo 3 - Direct Short V2 (Moldura Roxo Noturno)', path: out3 });
 
-  // 4. MODELO 4: VERSÃO EDITORIAL COM MOLDURA BRANDED TRANSPARENTE
-  console.log('\n5. Renderizando Modelo 4: Versão Editorial com Moldura GG NO CHAT...');
+  // 4. MODELO 4: DIRECT SHORT FULL-BLEED (SEM MOLDURA - 100% GAMEPLAY 9:16)
+  console.log('\n5. Renderizando Modelo 4: Direct Short Full-Bleed (Comparativo Sem Moldura)...');
   const out4 = path.join(config.paths.output, 'v2_modelo_4_framed_edition.mp4');
   await renderClip({
     inputVideoPath: rawClipPath,
-    model: 'split',
+    model: 'direct',
     outputPath: out4,
     subtitles,
     clipStartSec: startSec,
     clipDurationSec: durationSec,
-    hookText: 'CONVERSA NA CELA COM LUCIA',
+    hookText: 'LUCIA NA CELA: IMERSÃO TOTAL 9:16',
     badgeText: 'GG NO CHAT',
     channelTag: '@ggnochat',
-    framePreset: 'subtle_dark',
-    gameplayCrop: { x: 0.07, y: 0.23, w: 0.50, h: 0.77 },
+    framePreset: 'no_frame',
+    directMode: 'smart_crop',
+    cropAnchor: { x: 0.10, y: 0.0, w: 0.5625, h: 1.0 },
     lofiVolume: 0.08,
     fontName: 'Bebas Neue'
   });
-  outputs.push({ name: 'Modelo 4 - Framed Edition V2', path: out4 });
+  outputs.push({ name: 'Modelo 4 - Direct Full-Bleed 9:16', path: out4 });
 
   // 5. GERANDO CONTACT SHEETS DE AMOSTRAGEM [0, 0.5, 1, 2, 4, 7, 10, 13, 15s]
   console.log('\n6. Gerando Contact Sheets de Auditoria Visual...');

@@ -81,7 +81,7 @@ app.post('/api/render', async (req, res) => {
       newsCategory = 'GG NO CHAT • ANÁLISE EDITORIAL',
       lofiVolume = 0.08,
       fontName = 'Bebas Neue',
-      framePreset = 'no_frame',
+      framePreset = (model === 'split' ? 'vice_pink' : (model === 'web' ? 'wide_16x9' : 'subtle_dark')),
       pipMode = false,
       gameplayCrop = { x: 0.07, y: 0.23, w: 0.50, h: 0.77 }
     } = req.body;
